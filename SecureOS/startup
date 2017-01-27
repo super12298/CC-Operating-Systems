@@ -1,17 +1,28 @@
---STARTUP
 os.pullEvent = os.pullEventRaw
-local Make_Computers_great_again = settings.get("shell.allow_disk_startup", "not set")
-print(Make_Computers_great_again)
-if Make_Computers_great_again == true then
-settings.set("shell.allow_disk_startup", false)
-settings.save(".settings")
-end
-if fs.exists( "OS/Data/SecureOS/Temp/update" ) and fs.exists( "/OS/LoadOS/SecureOS" ) then 
-term.clear()
-shell.run("OS/Data/SecureOS/Temp/update")
-end
-function ban()
-term.clear()
+		function shutdowncount()
+		term.setCursorPos(1,18)
+		print("Rebooting in 5...")
+		term.setCursorPos(1,18)
+		sleep(1)
+		term.setCursorPos(1,18)
+		print("Rebooting in 4...")
+		term.setCursorPos(1,18)
+		sleep(1)
+		term.setCursorPos(1,18)
+		print("Rebooting in 3...")
+		sleep(1)
+		term.setCursorPos(1,18)
+		print("Rebooting in 2...")
+		sleep(1)
+		term.setCursorPos(1,18)
+		print("Rebooting in 1...")
+		sleep(1)
+		term.setCursorPos(1,18)
+		os.reboot()
+		end
+permissions = "User"
+-------------------------------------------
+--Downloads Files from any source
 local function Download(url, path)
 for i = 1, 3 do
 local response = http.get(url)
@@ -26,70 +37,499 @@ return true
 end
 end
 return false
-end	
-fs.delete("/startup")
-fs.delete("/Essentials/CVG.txt")
-Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS_2/bootmenu/OLD/Startup", "/startup")
-os.reboot()
 end
-
+-------------------------------------------
+function bootlogoLoader()
+	if term.isColor() and not turtle then
+		if fs.exists("OS/Data/SecureOS/Temp/.bootlogo/.bootlogoColoredtemp") then
+		else
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo1", "OS/Data/SecureOS/Temp/.bootlogo/.bootlogoColoredtemp")
+		end
+	BGL = paintutils.loadImage("OS/Data/SecureOS/Temp/.bootlogo/.bootlogoColoredtemp") 
+	paintutils.drawImage(BGL,1,1)
+	sleep(1)
+	term.setCursorPos(1,1)
+	end
+end
+if not fs.exists("OS/Data/SecureOS/") then
+fs.makeDir("OS/Data/SecureOS/API/")
+fs.makeDir("OS/Data/SecureOS/Core/")
+fs.makeDir("OS/Data/SecureOS/Temp/")
+end
+-------------------------------------------
+bootlogoLoader()
+shell.run("OS/Data/SecureOS/Temp/.login_credentials/DevKit")
+--Setup
+--User Setup
 term.clear()
-local function Download(url, path)
-for i = 1, 3 do
-local response = http.get(url)
-if response then
-local data = response.readAll()
-if path then
-local f = io.open(path, "w")
-f:write(data)
-f:close()
-end
-return true
-end
-end
-return false
-end	
-if fs.exists( "/Essentials/CVG.txt" ) then
-shell.run("/Essentials/CVG.txt")
-if debug == true then
-nQues = -15
-end
-else
-print("Checking...")
-local tempe = fs.open("/Essentials/CVG.txt", "w")
-local readthisa = http.get("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS_2/bootmenu/CVG")
-local realcfgftw = readthisa.readAll()
-tempe.write(realcfgftw)
-tempe.close()
-os.reboot()
-end
-
-if term.isColor() and not turtle then
-term.setTextColor(colors.red)
-end
-while true do
-if term.isColor() and not turtle then
-term.setBackgroundColor(colors.black)
-end
 term.setCursorPos(1,1)
-print("Loading "..countupd.."%")
-if fs.exists("/Essentials/bios")then
-shell.run("/Essentials/bios")
-else
-countupd=countupd+1
-if countupd == 100 then
-Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS_2/bootmenu/bi0s%20startup", "/Essentials/bios")
+if fs.exists("OS/Data/SecureOS/Core/.login_credentials/usern") then
+if dk == true then
+print("Checking User Name...")
+sleep(.5)
+print("OK!")
+sleep(.5)
+local file = io.open("OS/Data/SecureOS/Core/.login_credentials/usern", "r") 
+user = file:read()
 end
-if countupd > 100 then
-if term.isColor() and not turtle then
-term.setBackgroundColor(colors.green)
+else
+bootlogoLoader()
+print("User Setup;")
+print("Please Type in your Username")
+
+local input = read()
+local file = fs.open("OS/Data/SecureOS/Core/.login_credentials/usern", "w")
+file.writeLine(input)
+file.close()
+end
+--Username show
+
+
+local file = io.open("OS/Data/SecureOS/Core/.login_credentials/usern", "r")
+ShowUserName = file:read() -- capture file in a string
+file:close()
+
+
+--Password Setup
+
+if fs.exists("OS/Data/SecureOS/Core/.login_credentials/passw") then
+if dk == true then
+print("Checking Password...")
+sleep(.5)
+print("OK!")
+sleep(.5)
+end
+else
+term.clear()
+bootlogoLoader()
+term.setCursorPos(1,1)
+print("Password Setup;")
+print(ShowUserName, ", Please Type in your password")
+
+local input = read()
+local file = fs.open("OS/Data/SecureOS/Core/.login_credentials/passw", "w")
+file.writeLine(input)
+file.close()
 end
 
-print("Error Bios Doesn't exist")
+
+
+
+
+shell.run("OS/Data/SecureOS/Core/config.cfg")
+-------------------------------------------
+if not fs.exists("OS/Data/SecureOS/Temp/Devconfig.cfg")then
+online = false
+else
+shell.run("OS/Data/SecureOS/Temp/Devconfig.cfg")
+sleep(.1)
 end
-if countupd > 200 then
-os.reboot()
+
+term.clear()
+local nTime = os.time()
+local nDay = os.day()
+local nID = os.getComputerID()
+local nLabel = os.getComputerLabel()
+
+local log = http.get("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS_2/Change%20Logs") --Get contents of page
+local log2 = log.readAll()
+
+-------------------------------------------
+if fs.exists("OS/Data/SecureOS/Core/version")then
+local handle = fs.open("OS/Data/SecureOS/Core/version", "r")
+local idnumber = handle.readAll()
+handle.close()
+VN = idnumber
+else
+VN = 0
+--Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS_2/versionID", "version")
+--os.reboot()
 end
+
+if fs.exists("OS/Data/SecureOS/Core/.login_credentials/usernRM") == false then
+Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/Universal/UserTemp", "OS/Data/SecureOS/Core/.login_credentials/usernRM")
 end
+
+if fs.exists("OS/Data/SecureOS/Core/.login_credentials/passwRM") == false then
+Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/Universal/PassTemp", "OS/Data/SecureOS/Core/.login_credentials/passwRM")
 end
-os.shutdown()
+
+
+-------------------------------------------
+	function versionCheck()
+	term.clear()
+	term.setCursorPos(1,1)
+		if term.isColor() and not turtle then
+		if fs.exists("OS/Data/SecureOS/Temp/.bootlogo/.bootlogoColoredtemp") then
+		
+		else
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo1", "OS/Data/SecureOS/Temp/.bootlogo/.bootlogoColoredtemp")
+		end
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Temp/.bootlogo/.bootlogoColoredtemp")
+		paintutils.drawImage(BGL,1,1)
+		term.setCursorPos(1,1)
+		print("Checking database please wait...")
+		else
+		print("Checking database please wait...")
+		end
+	
+	local version2 = http.get("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS_2/versionID") --Get contents of page
+		local version3 = version2.readAll()
+		if version3 == VN then
+		
+		fs.delete("OS/Data/SecureOS/Temp/update")
+		else
+		print("Downloading the latest software please wait...")
+		fs.delete("OS/Data/SecureOS/Temp/update")
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS_2/update", "OS/Data/SecureOS/Temp/update")
+		shell.run("OS/Data/SecureOS/Temp/update")
+		shutdowncount()
+		end
+	end
+versionCheck()
+	
+	
+	function nameT()
+		local handle2 = fs.open("OS/Data/SecureOS/Core/.login_credentials/usern", "r")
+		local username = handle2.readAll()
+		handle2.close()
+			if fast_boot == true then
+			print(username)
+			else
+			textutils.slowPrint(username, text_animation_speed)
+			end
+	end
+	
+	function nameofos()
+			if fast_boot == true then
+			print("Project Secure V:"..VN)
+			else
+			textutils.slowPrint("Project Secure V:"..VN, text_animation_speed)
+		end
+
+	end
+	
+	function nameofComputer()
+	if fast_boot == true then
+	if nLabel then
+	print("Computer:"..nLabel..","..nID)
+	else
+	print("Computer: [N/A],"..nID)
+	end
+	else
+	if nLabel then
+	textutils.slowPrint("Computer:"..nLabel..","..nID,text_animation_speed)
+	else
+	textutils.slowPrint("Computer: [N/A],"..nID,text_animation_speed)
+	end
+	end
+	end
+	
+	function passT()
+	
+		if dk == true then
+		local handle3 = fs.open("OS/Data/SecureOS/Core/.login_credentials/passwRM", "r")
+		local password = handle3.readAll()
+		handle3.close()
+		passwd = password
+		else
+		local handle3 = fs.open("OS/Data/SecureOS/Core/.login_credentials/passw", "r")
+		local password = handle3.readAll()
+		handle3.close()
+		passwd = password
+		end
+	end
+	
+	function CJB() --CDB Costom JukeBox
+	
+	end
+	
+	function CScreen()
+		term.clear()
+		term.setCursorPos(1,1)
+		sleep(.4)
+	end
+	
+	function space()
+		print("")
+	end
+	function RandomTXT()
+		term.setCursorPos(6,4)
+	end
+	
+	function timeday()
+		print ("the time is",nTime,"& the day is", nDay)
+	end
+	
+	function backgroundload()
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+		paintutils.drawImage(BGL,1,1)
+		term.setCursorPos(21,14)
+		fs.delete("OS/Data/SecureOS/Core/.bootlogoColored")
+		nameT()
+			if nDay == 1 then
+			term.setCursorPos(5,17)
+			print("Cousin it's your cousin lets go bowling!") 
+			end
+			if nDay == 2 then
+			term.setCursorPos(10,17)
+			print("I used to program like you") 
+			term.setCursorPos(10,18)
+			print("then i got a arrow to the knee.") 
+			end
+			if nDay == 3 then
+			term.setCursorPos(5,17)
+			print("My name is jeff...") 
+			end
+			if nDay == 4 then
+			term.setCursorPos(5,17)
+			print("Deez Nutz") 
+			end
+		sleep(animation_speed)
+		term.setCursorPos(1,19)
+		
+	end
+	
+		function backgroundload2()
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored") 
+		paintutils.drawImage(BGL,1,1)
+			end
+				
+	function always_offlineCC()
+		if not fs.exists("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored1") then
+		if dk == true then
+		print("Running Download!")
+		sleep(.2)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo8", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored8")
+		print("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo8")
+		sleep(.2)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo7", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored7")
+		print("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo7")
+		sleep(.2)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo6", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored6")
+		print("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo6")
+		sleep(.2)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo5", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored5")
+		print("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo5")
+		sleep(.2)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo4", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored4")
+		print("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo4")
+		sleep(.2)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo3", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored3")
+		print("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo3")
+		sleep(.2)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo2", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored2")
+		print("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo2")
+		sleep(.2)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo1", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored1")
+		print("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo1")
+		sleep(.2)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/loginbackground", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored9")
+		print("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/loginbackground")
+		sleep(.2)
+		else
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo8", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored8")
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo7", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored7")
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo6", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored6")
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo5", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored5")
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo4", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored4")
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo3", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored3")
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo2", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored2")
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo1", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored1")
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/loginbackground", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored9")
+		end
+		end
+		if fast_boot == true then
+		
+		else
+		if dk == true then
+		print("Running Boot Animation")
+		sleep(.5)
+		end
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored1") 
+		paintutils.drawImage(BGL,1,1)
+		sleep(1)
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored2") 
+		paintutils.drawImage(BGL,1,1)
+		sleep(animation_speed)
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored3") 
+		paintutils.drawImage(BGL,1,1)
+		sleep(animation_speed)
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored4") 
+		paintutils.drawImage(BGL,1,1)
+		sleep(animation_speed)
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored5") 
+		paintutils.drawImage(BGL,1,1)
+		sleep(animation_speed)
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored6") 
+		paintutils.drawImage(BGL,1,1)
+		sleep(animation_speed)
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored7") 
+		paintutils.drawImage(BGL,1,1)
+		sleep(animation_speed)
+		BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored8") 
+		paintutils.drawImage(BGL,1,1)
+		sleep(.5)
+		if dk == true then
+		term.setCursorPos(1,1)
+		print("Boot Animation Complete!")
+		sleep(.5)
+		end
+		end
+	end
+	
+		function always_onlineCC()
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo1", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+		backgroundload()
+		sleep(.5)
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo2", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+		backgroundload()
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo3", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+		backgroundload()
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo4", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+		backgroundload()
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo5", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+		backgroundload()
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo6", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+		backgroundload()
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo7", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+		backgroundload()
+		Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/bootlogo8", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+		backgroundload()
+	end
+	
+	function loginCCO()
+			Download("https://raw.githubusercontent.com/super12298/operating-systems/master/SecureOS/loginbackground", "OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored")
+			backgroundload2()
+			term.setCursorPos(15,14)
+			nameT()
+			sleep(.1)
+			term.setCursorPos(15,1)
+			nameofos()
+			term.setCursorPos(15,16)
+			passT()
+			local psc = read("*")
+			if psc == passwd then
+			print("working! :]")
+			else
+			loginCCO()
+			end
+	end
+		function loginCCF()
+			BGL = paintutils.loadImage("OS/Data/SecureOS/Core/.bootlogo/.bootlogoColored9") 
+			paintutils.drawImage(BGL,1,1)
+			sleep(animation_speed)
+			term.setCursorPos(15,14)
+			nameT()
+			sleep(.1)
+			term.setCursorPos(15,1)
+			nameofos()
+			term.setCursorPos(15,2)
+			nameofComputer()
+			term.setCursorPos(15,16)
+			passT()
+			local psc = read("*")
+			if psc == passwd then
+			print("working! :]")
+			else
+			loginCCF()
+			end
+	end
+	
+		function loginBCOF()
+			term.clear()
+			term.setCursorPos(15,14)
+			sleep(.1)
+			term.setCursorPos(15,1)
+			nameofos()
+			term.setCursorPos(15,2)
+			nameofComputer()
+			term.setCursorPos(15,2)
+			print("---------------------------------------------------")
+						term.setCursorPos(15,16)
+			print("---------------------------------------------------")
+			if fast_boot == false then
+			term.setCursorPos(21,8)
+			textutils.slowPrint("User Name;", text_animation_speed)
+			term.setCursorPos(21,9)
+			nameT()
+			sleep(.1)
+			term.setCursorPos(21,11)
+			textutils.slowPrint("Password:", text_animation_speed)
+			term.setCursorPos(21,12)
+			passT()
+			else
+			term.setCursorPos(21,8)
+			print("User Name;")
+			term.setCursorPos(21,9)
+			nameT()
+			sleep(.1)
+			term.setCursorPos(21,11)
+			print("Password:")
+			term.setCursorPos(21,12)
+			passT()
+			end
+			local psc = read("*")
+			if psc == passwd then
+			print("working! :]")
+			else
+			loginBCOF()
+			end
+	end
+	
+-----------------------------------------------------------------------------
+
+------------------------------------------------------------------------------
+if term.isColor() and not turtle then
+	if online == true then
+	
+	if fast_boot == false then
+	always_onlineCC()
+	CScreen()
+	loginCCO()
+	else
+	loginCCO()
+	end
+	
+	end
+	if online == false then
+always_offlineCC()
+CScreen()
+loginCCF()
+	end
+end
+
+
+if not term.isColor() and not turtle then
+	if online == true then
+	loginBCOF()
+	end
+	if online == false then
+	loginBCOF()
+	end
+end
+
+
+if turtle and not term.isColor() then
+print("Hello World2")
+end
+
+if turtle and term.isColor() then
+print("Hello World")
+end
+
+if pocket and term.isColor() then
+
+end
+
+if pocket and not term.isColor() then
+
+end
+
+if commands then
+
+end
+
+if http then
+
+end
