@@ -1,1 +1,133 @@
-test
+--Basic Functions API
+-----------------------------------
+--All Functions
+-----------------------------------
+--Reboot with a countdown!
+--Hint default is (1,18)
+--usage BFS.sdc(x,y)
+
+--Downloads Files from any source
+--usage BFS.df("url", "path")
+
+--Makes directory
+--usage BFS.md("path")
+
+--Detects Rednet and turns it on("true") or off("false")
+--usage BFS.rd("true")
+
+--This function draws a image
+--usage DFS.dg("path", sleeptimeinseconds)
+
+--This function prints the content of a page
+--usage DFS.getlog("path")
+
+--OS function that updates the system
+--Usage BFS.verc("versionpath", "versionurl", "updatelocation", "updateurl")
+
+-----------------------------------
+--Reboot with a countdown!
+--usage BFS.sdc(x,y)
+function sdc(x,y)
+timer = 5
+	for i=1,timer do
+		term.setCursorPos(x,y)
+		print("Rebooting in "..timer.."...")
+		sleep(1)
+	timer = timer-1
+end
+os.reboot()
+end
+
+
+--Downloads Files from any source
+--usage BFS.df("url", "path")
+function df(url, path)
+local check, msg = http.checkURL(url)
+if not check then
+write("Invalid URL: Error[" .. msg.."]")
+else
+if path == nul or path == "" or path == "/" then
+write("Invalid Path")
+else
+	for i = 1, 3 do
+	local response = http.get(url)
+		if response then
+		local data = response.readAll()
+				if path then
+				local f = io.open(path, "w")
+				f:write(data)
+				f:close()
+				end
+			return true
+			end
+		end
+	return false
+end
+end
+end
+
+--Makes directory
+--usage BFS.md(directory you want to make)
+function md(dir)
+	if not fs.exists(dir) then
+	fs.makeDir(dir)
+	else
+	--print(dir.." already exist!")
+	end
+end 
+
+--Detects Rednet and turns it on("true") or off("false")
+--usage BFS.rd("true")
+function rd()
+
+end
+
+--This function draws a image
+--usage DFS.dg("path", sleeptimeinseconds)
+function dg(path, speed)
+BGL = paintutils.loadImage(path) 
+paintutils.drawImage(BGL,1,1)
+sleep(speed)
+end
+
+--This Function prints the content of a page
+--usage DFS.getlog("path")
+function getlog(path)
+local log = http.get(path) --Get contents of page
+local log2 = log.readAll()
+print(log2)
+end
+
+--OS function that updates the system
+--Usage BFS.verc("versionpath", "versionurl", "updatelocation", "updateurl")
+function verc(path, url, updl, updp)
+term.clear()
+term.setCursorPos(1,1)
+	if not fs.exists(path) then
+	df(updp, updl)
+	df(url, path)
+	os.run({},updl)
+	fs.delete(updl)
+	print("Successfully updated!")	
+	else
+	local vnid = http.get(url)
+	local rvnid = vnid.readAll()
+		if fs.exists(path) then
+		local readvn = fs.open(path, "r")
+		local readvern = readvn.readAll()
+		readvn.close()
+		vn = readvern
+			if vn == rvnid then
+			fs.delete(updl)
+			print("The software on this computer is up to date.")
+			else
+			df(updp, updl)
+			df(url, path)
+			os.run({},updl)
+			fs.delete(updl)
+			print("Successfully updated!")	
+			end
+		end
+	end
+end
+
