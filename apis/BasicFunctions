@@ -24,7 +24,19 @@
 --OS function that updates the system
 --Usage BFS.verc("versionpath", "versionurl", "updatelocation", "updateurl")
 
+--Disables or Enables the disk startup.
+--usage BFS.DiskS("false") or BFS.DiskS("true")
+
 -----------------------------------
+--This is a test function
+function cdwn()
+rn = 8
+for i=1,rn do
+print(rn)
+rn = rn-1
+end
+end
+
 --Reboot with a countdown!
 --usage BFS.sdc(x,y)
 function sdc(x,y)
@@ -131,9 +143,9 @@ term.setCursorPos(1,1)
 	end
 end
 
---This function basically for com
---
-function compair(path)
-cin = fs.open(path)
-rfn = io.
+--Disables or Enables the disk startup.
+--usage BFS.DiskS("false") or BFS.DiskS("true")
+function DiskS(quest)
+settings.set("shell.allow_disk_startup", quest)
+settings.save(".settings")
 end
