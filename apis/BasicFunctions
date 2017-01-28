@@ -149,3 +149,39 @@ function DiskS(quest)
 settings.set("shell.allow_disk_startup", quest)
 settings.save(".settings")
 end
+
+--Compairs the udid nothing special.
+function Comp_udid(path, errorimg)
+	local fr = fs.open(path, "r")
+	udid1 = fr.readAll()
+
+		local gf = fs.open(path..".ref", "r")
+		udid2 = gf.readAll()
+	if udid1 == udid2 then
+	else
+	dg(errorimg, 0)
+		term.setCursorPos(1,1)
+	print("[Error]")
+	sleep(10)
+	os.reboot()
+	end
+	fr.close()
+	gf.close()
+end
+
+--Generates a unique id for the computer (You can use this to make a unique rednet id) and will check (if you put true) if it has been tampered it will prevent the computer from booting.
+--  change 'compair' to true or false
+--Usage udid("Codename", "path", "Compair". )
+function udid(name, path)
+	if not fs.exists(path) then
+	local f = io.open(path, "w")
+	f:write(name)
+		for i = 1, 25 do
+		local items = {"g", "d", "a", "n", "l", "2", "7", "9", "4", "5"}
+		f:write(items[math.random(1, #items)])
+		end
+	f:close()
+	fs.copy(path, path..".ref")
+	end
+end
+
