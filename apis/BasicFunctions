@@ -85,7 +85,6 @@ end
 --usage BFS.dfa("url", "backupurl", "path")
 function dfa(original, backup, path)
 local ch3ck, msag = http.checkURL(original)
-print(ch3ck)
 if not fs.exists(path) then
 if ch3ck then
 df(original, path)
@@ -93,6 +92,18 @@ else
 df(backup, path)
 end
 end
+end
+
+local function getDeviceSide(deviceType)
+  local lstSides = {"left","right","up","down","front","back"};
+  for i, side in pairs(lstSides) do
+    if (peripheral.isPresent(side)) then
+      if (peripheral.getType(side) == string.lower(deviceType)) then
+        return side;
+      end
+    end
+  end -- for-do
+  return nil;
 end
 
 --Makes directory
@@ -107,8 +118,15 @@ end
 
 --Detects Rednet and turns it on("true") or off("false")
 --usage BFS.rd("true")
-function rd()
-
+function rd(quest)
+modemSide = getDeviceSide("modem")
+	if quest == "true" then
+		if (modemSide) then
+		rednet.open(modemSide)
+		end
+	else
+	rednet.close(modemSide)
+	end
 end
 
 --This function draws a image
@@ -187,9 +205,26 @@ if fs.exists(path) then
 	end
 end
 
+--Compairs the udid nothing special.
+function Comp_udid2(path)
+if fs.exists(path) then
+	local fr = fs.open(path, "r")
+	udid1 = fr.readAll()
+		local gf = fs.open(path..".ref", "r")
+		udid2 = gf.readAll()
+	if udid1 == udid2 then
+	rd("true")
+	else
+	rd("false")
+	end
+	fr.close()
+	gf.close()
+	end
+end
+
 --Generates a unique id for the computer (You can use this to make a unique rednet id) and will check (if you put true) if it has been tampered it will prevent the computer from booting.
 --  change 'compair' to true or false
---Usage udid("Codename", "path", "Compair". )
+--Usage udid("Codename", "path" )
 function udid(name, path)
 	if not fs.exists(path) then
 	local f = io.open(path, "w")
@@ -202,6 +237,7 @@ function udid(name, path)
 	fs.copy(path, path..".ref")
 	end
 end
+
 
 
 
