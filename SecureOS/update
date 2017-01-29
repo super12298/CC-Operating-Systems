@@ -21,5 +21,19 @@ else
 	return false
 end
 end
+function dfa(original, backup, path)
+local ch3ck, msag = http.checkURL(original)
+if not fs.exists(path) then
+if ch3ck then
+df(original, path)
+else
+df(backup, path)
+end
+end
+end
 
-df(url, path)
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/startup", "/startup")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/api/BFS")
+fs.delete(api/Bedrock)
+BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
