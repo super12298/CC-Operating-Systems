@@ -1,0 +1,107 @@
+local runningApp = "search"
+
+local alreadyUpdated = {}
+
+local pinwheel = {[0] = "|", "/", "-", "\\"}
+local pinwheel_index = 0
+function checkForUpdates(app, path, onlyIfAbsent)
+	local w, h = term.getSize()
+	if not alreadyUpdated[app] then
+		if fs.exists(path) and onlyIfAbsent then
+			return false
+		end
+		term.setBackgroundColor(colors.white)
+		term.setTextColor(colors.blue)
+		term.clear()
+		http.request("http://www.googol.comli.com/data/"..app)
+		pinwheel_timer = os.startTimer(0.1)
+		while true do
+			local event = { os.pullEvent() }
+			if event[1] == "http_success" then
+				newdata = event[3]:readAll()
+				break
+			elseif event[1] == "http_failure" then
+				error("Error updating "..app, 0)
+			elseif event[1] == "timer" and event[2] == pinwheel_timer then
+				str = "Updating "..app
+				term.setCursorPos(w/2-str:len()/2, h/2-1)
+				print(str)
+				term.setCursorPos(w/2, h/2+1)
+				print(pinwheel[pinwheel_index])
+				pinwheel_index = (pinwheel_index + 1) % (#pinwheel+1)
+				pinwheel_timer = os.startTimer(0.1)
+			end
+		end
+		
+		local file = io.open(path or "/.googol/apps/"..app, "r")
+		local currentdata
+		if file then
+			currentdata = file:read("*a")
+			file:close()
+		else
+			currentdata = ""
+		end
+	
+		if newdata ~= currentdata then
+			local file = io.open(path or "/.googol/apps/"..app, "w")
+			file:write(newdata)
+			file:close()
+			
+			alreadyUpdated[app] = true
+			return true
+		end
+		
+		alreadyUpdated[app] = true
+		return false
+	end
+end
+
+if not fs.exists("/.googol") then fs.makeDir("/.googol") end
+if not fs.exists("/.googol/media") then fs.makeDir("/.googol/media") end
+if not fs.exists("/.googol/apps") then fs.makeDir("/.googol/apps") end
+local updated = checkForUpdates("googol", shell.getRunningProgram())
+checkForUpdates("api.lua", "/.googol/api.lua")
+checkForUpdates("LibCompress.lua", "/.googol/LibCompress.lua", true)
+checkForUpdates("logo.nfp", "/.googol/media/logo.nfp", true)
+checkForUpdates("gamelogo.nfp", "/.googol/media/gamelogo.nfp", true)
+
+if updated then
+	local w, h = term.getSize()
+	local str = "Googol has been updated"
+	term.clear()
+	term.setCursorPos(w/2-str:len()/2, h/2)
+	term.setTextColor(colors.blue)
+	print(str)
+	sleep(3)
+	
+	shell.run(shell.getRunningProgram())
+	
+	error("", 0)
+end
+
+shell.run("/.googol/api.lua")
+
+while true do
+	checkForUpdates(runningApp, "/.googol/apps/"..runningApp)
+	
+	googol.clearButtons()
+	shell.run("/.googol/apps/"..runningApp)
+	local timeout = os.startTimer(0.5)
+	
+	while true do
+		local event = { os.pullEvent() }
+		if event[1] == "GOOGOL_APP_CHANGE" then
+			runningApp = event[2]
+			break
+		elseif event[1] == "GOOGOL_EXIT" then
+			term.clear()
+			term.setCursorPos(1, 1)
+			term.setTextColor(colors.yellow)
+			print(os.version())
+			error("", 0)
+		elseif event[1] == "timer" and event[2] == timeout then
+			runningApp = "search"
+			break
+		end
+	end
+end
