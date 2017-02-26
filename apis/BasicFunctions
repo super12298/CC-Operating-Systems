@@ -101,6 +101,18 @@ end
 end
 end
 
+local function getDeviceSide(deviceType)
+  local lstSides = {"left","right","up","down","front","back"};
+  for i, side in pairs(lstSides) do
+    if (peripheral.isPresent(side)) then
+      if (peripheral.getType(side) == string.lower(deviceType)) then
+        return side;
+      end
+    end
+  end
+  return nil;
+end
+
 --Makes directory
 --usage BFS.md(directory you want to make)
 function md(dir)
@@ -113,8 +125,15 @@ end
 
 --Detects Rednet and turns it on("true") or off("false")
 --usage BFS.rd("true")
-function rd()
-
+function rd(quest)
+modemSide = getDeviceSide("modem")
+	if quest == "true" then
+		if (modemSide) then
+		rednet.open(modemSide)
+		end
+	else
+	rednet.close(modemSide)
+	end
 end
 
 --This function draws a image
