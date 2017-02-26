@@ -30,7 +30,14 @@
 --[Advance] Downloads Files from any source
 --usage BFS.dfa("url", "backupurl", "path")
 
+--Displays the computer label and id
+--Usage BFS.dply(5,8)
 -----------------------------------
+local nTime = os.time()
+local nDay = os.day()
+local nID = os.getComputerID()
+local nLabel = os.getComputerLabel()
+
 --This is a test function
 function cdwn()
 rn = 8
@@ -94,18 +101,6 @@ end
 end
 end
 
-local function getDeviceSide(deviceType)
-  local lstSides = {"left","right","up","down","front","back"};
-  for i, side in pairs(lstSides) do
-    if (peripheral.isPresent(side)) then
-      if (peripheral.getType(side) == string.lower(deviceType)) then
-        return side;
-      end
-    end
-  end -- for-do
-  return nil;
-end
-
 --Makes directory
 --usage BFS.md(directory you want to make)
 function md(dir)
@@ -118,22 +113,24 @@ end
 
 --Detects Rednet and turns it on("true") or off("false")
 --usage BFS.rd("true")
-function rd(quest)
-modemSide = getDeviceSide("modem")
-	if quest == "true" then
-		if (modemSide) then
-		rednet.open(modemSide)
-		end
-	else
-	rednet.close(modemSide)
-	end
+function rd()
+
 end
 
 --This function draws a image
 --usage BFS.dg("path", sleeptimeinseconds)
 function dg(path, speed)
+if term.isColor() then
 BGL = paintutils.loadImage(path) 
 paintutils.drawImage(BGL,1,1)
+else
+local pic = fs.open(path, "r")
+local pic2 = pic.readAll()
+term.clear()
+term.setCursorPos(1,1)
+--print(pic2)
+pic.close()
+end
 sleep(speed)
 end
 
@@ -190,8 +187,12 @@ function Comp_udid(path, errorimg)
 if fs.exists(path) then
 	local fr = fs.open(path, "r")
 	udid1 = fr.readAll()
+	if fs.exists(path..".ref") then
 		local gf = fs.open(path..".ref", "r")
-		udid2 = gf.readAll()
+		udid2 = gf.readAll()	
+	else		
+	udid2 = "NONE"
+	end
 	if udid1 == udid2 then
 	else
 	dg(errorimg, 0)
@@ -201,44 +202,54 @@ if fs.exists(path) then
 	os.reboot()
 	end
 	fr.close()
-	gf.close()
-	end
-end
-
---Compairs the udid nothing special.
-function Comp_udid2(path)
-if fs.exists(path) then
-	local fr = fs.open(path, "r")
-	udid1 = fr.readAll()
-		local gf = fs.open(path..".ref", "r")
-		udid2 = gf.readAll()
-	if udid1 == udid2 then
-	rd("true")
-	else
-	rd("false")
-	end
-	fr.close()
-	gf.close()
+	--gf.close()
 	end
 end
 
 --Generates a unique id for the computer (You can use this to make a unique rednet id) and will check (if you put true) if it has been tampered it will prevent the computer from booting.
 --  change 'compair' to true or false
---Usage udid("Codename", "path" )
+--Usage BFS.udid("Codename", "path", "Compair". )
 function udid(name, path)
 	if not fs.exists(path) then
 	local f = io.open(path, "w")
 	f:write(name)
 		for i = 1, 25 do
-		local items = {"g", "d", "a", "n", "l", "2", "7", "9", "4", "5"}
+		local items = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"}
 		f:write(items[math.random(1, #items)])
 		end
 	f:close()
+	if fs.exists(path..".ref") then
+	os.reboot()
+	else
 	fs.copy(path, path..".ref")
+	end
+	end
+end
+--Displays the computer label and id
+--Usage BFS.dply(5,8)
+function dply(x,y)
+	term.setCursorPos(x,y)
+	if nLabel then
+	print("Computer:"..nLabel..","..nID)
+	else
+	print("Computer: [N/A],"..nID)
 	end
 end
 
+--Text with location
+--Usage BFS.tpla(5,8,txt)
+function tpla(x,y,txt)
+	term.setCursorPos(x,y)
+	print(txt)
+end
 
-
-
+--read file and prints it to a location
+--Usage   readfile(1,4,/some/file/data)
+function readfile(x,y,file)
+term.setCursorPos(x,y)
+local readfl = fs.open(file, "r")
+readallfl = readfl.readAll()
+readfl.close()
+print(readallfl)
+end
 
