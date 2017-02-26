@@ -11,7 +11,7 @@ function listcdwn()
 term.clear()
 rn = 8
 rn2 = 1
-if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.Error"..rn2) then
+if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.Error") then
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/Wrong", "/OS/Data/ProjectSecure/.bootlogo/.Error")
 else
 end
@@ -42,9 +42,19 @@ end
 if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.1)
 end
+
+
+
+
 if not fs.exists("/OS/Data/ProjectSecure/desktop") then
-BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop")
+local id8 = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
+local id9 = id8.readAll()
+BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop","identification = "..id9)
 end
+
+
+
+
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS") then
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/loginbackground", "/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS")
 os.reboot()
@@ -101,4 +111,3 @@ BFS.sdc(1,18)
 end
 end
 LockSC()
-
