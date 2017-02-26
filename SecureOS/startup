@@ -18,7 +18,7 @@ end
 if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.3)
 
-if fs.exists( "/api/" ) and fs.isDir( "/api/" ) then
+if fs.exists( "/api/" ) and fs.isDir( "/api/" ) or fs.exists( "disk/api/" ) and fs.isDir( "disk/api/" ) then
 term.setCursorPos(1,1)
   local tFiles = fs.list( "/api/" )
   table.sort( tFiles )
@@ -27,13 +27,12 @@ term.setCursorPos(1,1)
           local sPath = "/api/"..sFile
           if not fs.isDir( sPath ) then
                 os.loadAPI( sPath )
-                --print("loaded API:"..sPath)
-                sleep(.1)
+                print("[API]:"..sPath)
+                sleep(.3)
           end
         end
   end
 end
-
 end
 for i=1,rn do
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn) then
@@ -80,6 +79,9 @@ local readuserpwd = readusrpwd.readAll()
 readusrpwd.close()
 term.setCursorPos(15,14)
 print(readusern)
+BFS.dply(1,1)
+BFS.tpla(1,2,"[Project Secure] Version:")
+BFS.readfile(26,2,"/OS/Data/ProjectSecure/version")
 term.setCursorPos(15,16)
 usrpwd = read("*")
 	if usrpwd == readuserpwd then
