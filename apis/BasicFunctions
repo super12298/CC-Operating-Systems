@@ -63,7 +63,7 @@ end
 
 --Downloads Files from any source
 --usage BFS.df("url", "path")
-function df(url, path)
+function df(url, path, wdl)
 local check, msg = http.checkURL(url)
 if not check then
 write("Invalid URL: Error[" .. msg.."]")
@@ -77,6 +77,11 @@ else
 		local data = response.readAll()
 				if path then
 				local f = io.open(path, "w")
+				--print(url, wdl)
+				sleep(.1)
+				if wdl then
+				f:write(wdl.."\n")
+				end
 				f:write(data)
 				f:close()
 				end
@@ -212,6 +217,7 @@ if fs.exists(path) then
 	else		
 	udid2 = "NONE"
 	end
+ 	test = udid1
 	if udid1 == udid2 then
 	else
 	dg(errorimg, 0)
@@ -271,4 +277,3 @@ readallfl = readfl.readAll()
 readfl.close()
 print(readallfl)
 end
-
