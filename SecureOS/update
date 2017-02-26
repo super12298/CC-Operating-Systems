@@ -1,4 +1,4 @@
-function df(url, path)
+function df(url, path, wdl)
 local check, msg = http.checkURL(url)
 if not check then
 write("Invalid URL: Error[" .. msg.."]")
@@ -12,6 +12,11 @@ else
 		local data = response.readAll()
 				if path then
 				local f = io.open(path, "w")
+				--print(url, wdl)
+				sleep(.1)
+				if wdl then
+				f:write(wdl.."\n")
+				end
 				f:write(data)
 				f:close()
 				end
@@ -19,6 +24,7 @@ else
 			end
 		end
 	return false
+end
 end
 end
 function dfa(original, backup, path)
@@ -31,12 +37,19 @@ df(backup, path)
 end
 end
 end
-
 df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/startup", "/startup")
-df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop")
 df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/apis/BasicFunctions", "/api/BFS")
-fs.delete(api/Bedrock)
-BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
-print("AYYLMAO")
-sleep(5)
+fs.delete("api/Bedrock")
+dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
+
+local id8 = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
+local id9 = id8.readAll()
+if identification == id9 then
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop","identification = "..id9)
+else
+if term.isColor() then
+term.setTextColor(colors.red)
+end
+print("stop_messing_with_my_code:1: attempt to call nil")
+sleep(3)
 end
