@@ -76,7 +76,7 @@ readusrn.close()
 else
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored8",0)
 term.setCursorPos(1,1)
-print("[SETUP] Please enter you name.")
+print("[SETUP] Please enter your name.")
 createusn = read()
 Usn = fs.open("/OS/Data/ProjectSecure/.UserPref/Usn", "w")
 Usn.write(createusn)
