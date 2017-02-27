@@ -14,11 +14,13 @@ if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.Error") then
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/Wrong", "/OS/Data/ProjectSecure/.bootlogo/.Error")
 else
 end
+local id8 = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
+local id9 = id8.readAll()
 if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.3)
 if fs.exists( "/api/" ) and fs.isDir( "/api/" ) or fs.exists( "disk/api/" ) and fs.isDir( "disk/api/" ) then
 term.setCursorPos(1,1)
-BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update")
+BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update","identification = "..id9)
 sleep(.3)
   local tFiles = fs.list( "/api/" )
   table.sort( tFiles )
@@ -43,8 +45,6 @@ if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.1)
 end
 if not fs.exists("/OS/Data/ProjectSecure/desktop") then
-local id8 = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
-local id9 = id8.readAll()
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop","identification = "..id9)
 end
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS") then
