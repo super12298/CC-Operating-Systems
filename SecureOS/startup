@@ -2,7 +2,7 @@ term.clear()
 term.setCursorPos(1,1)
 os.loadAPI("/api/BFS")
 BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
-
+BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update")
 --Eurobeat intensifies
 BFS.DiskS("false")
 BFS.Comp_udid("/OS/Data/ProjectSecure/.UserPref/identification", "/OS/Data/ProjectSecure/.bootlogo/.Error")
@@ -42,19 +42,11 @@ end
 if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.1)
 end
-
-
-
-
 if not fs.exists("/OS/Data/ProjectSecure/desktop") then
 local id8 = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
 local id9 = id8.readAll()
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop","identification = "..id9)
 end
-
-
-
-
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS") then
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/loginbackground", "/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS")
 os.reboot()
