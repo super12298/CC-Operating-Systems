@@ -168,12 +168,12 @@ end
 
 --OS function that updates the system
 --Usage BFS.verc("versionpath", "versionurl", "updatelocation", "updateurl")
-function verc(path, url, updl, updp)
+function verc(path, url, updl, updp, word)
 	if not fs.exists(path) then
 	df(updp, updl)
-	df(url, path)
+	df(url, path, word)
 	os.run({},updl)
-	fs.delete(updl)
+	--fs.delete(updl)
 	print("Successfully updated!")	
 	else
 	local vnid = http.get(url)
@@ -184,13 +184,13 @@ function verc(path, url, updl, updp)
 		readvn.close()
 		vn = readvern
 			if vn == rvnid then
-			fs.delete(updl)
+			--fs.delete(updl)
 			print("The software on this computer is up to date.")
 			else
 			df(updp, updl)
 			df(url, path)
 			os.run({},updl)
-			fs.delete(updl)
+			--fs.delete(updl)
 			print("Successfully updated!")	
 			end
 		end
