@@ -2,7 +2,6 @@ term.clear()
 term.setCursorPos(1,1)
 os.loadAPI("/api/BFS")
 BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
-BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update")
 --Eurobeat intensifies
 BFS.DiskS("false")
 BFS.Comp_udid("/OS/Data/ProjectSecure/.UserPref/identification", "/OS/Data/ProjectSecure/.bootlogo/.Error")
@@ -17,9 +16,10 @@ else
 end
 if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.3)
-
 if fs.exists( "/api/" ) and fs.isDir( "/api/" ) or fs.exists( "disk/api/" ) and fs.isDir( "disk/api/" ) then
 term.setCursorPos(1,1)
+BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update")
+sleep(.3)
   local tFiles = fs.list( "/api/" )
   table.sort( tFiles )
   for n, sFile in ipairs( tFiles ) do
