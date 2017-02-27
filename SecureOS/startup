@@ -6,7 +6,7 @@ BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "
 --Eurobeat intensifies
 BFS.DiskS("false")
 BFS.Comp_udid("/OS/Data/ProjectSecure/.UserPref/identification", "/OS/Data/ProjectSecure/.bootlogo/.Error")
-BFS.udid("Panda-", "/OS/Data/ProjectSecure/.UserPref/identification")
+BFS.udid("Panda_", "/OS/Data/ProjectSecure/.UserPref/identification")
 function listcdwn()
 term.clear()
 rn = 8
