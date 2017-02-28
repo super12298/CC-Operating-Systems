@@ -1,105 +1,561 @@
-term.clear()
-term.setCursorPos(1,1)
-os.loadAPI("/api/BFS")
-BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
---Eurobeat intensifies
-BFS.DiskS("false")
-BFS.Comp_udid("/OS/Data/ProjectSecure/.UserPref/identification", "/OS/Data/ProjectSecure/.bootlogo/.Error")
-BFS.udid("Panda_", "/OS/Data/ProjectSecure/.UserPref/identification")
-function listcdwn()
-term.clear()
+--Basic Functions API
+-----------------------------------
+--Config (nul or blank == off and 1 == on)
+debug = nul
+-----------------------------------
+--All Functions
+-----------------------------------
+--Reboot with a countdown!
+--Hint default is (1,18)
+--usage BFS.sdc(x,y)
+
+--Downloads Files from any source
+--usage BFS.df("url", "path")
+
+--Makes directory
+--usage BFS.md("path")
+
+--Detects Rednet and turns it on("true") or off("false")
+--usage BFS.rd("true")
+
+--This function draws a image
+--usage BFS.dg("path", sleeptimeinseconds)
+
+--This function prints the content of a page
+--usage BFS.getlog("path")
+
+--OS function that updates the system
+--Usage BFS.verc("versionpath", "versionurl", "updatelocation", "updateurl")
+
+--Disables or Enables the disk startup.
+--usage BFS.DiskS("false") or BFS.DiskS("true")
+
+--[Advance] Downloads Files from any source
+--usage BFS.dfa("url", "backupurl", "path")
+
+--Displays the computer label and id
+--Usage BFS.dply(5,8)
+-----------------------------------
+local nTime = os.time()
+local nDay = os.day()
+local nID = os.getComputerID()
+local nLabel = os.getComputerLabel()
+
+--This is a test function
+function cdwn()
 rn = 8
-rn2 = 1
-if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.Error") then
-BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/Wrong", "/OS/Data/ProjectSecure/.bootlogo/.Error")
-else
-end
-local id8 = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
-local id9 = id8.readAll()
-if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
-BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.3)
-if fs.exists( "/api/" ) and fs.isDir( "/api/" ) or fs.exists( "disk/api/" ) and fs.isDir( "disk/api/" ) then
-term.setCursorPos(1,1)
-BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update","identification = "..id9)
-sleep(.3)
-  local tFiles = fs.list( "/api/" )
-  table.sort( tFiles )
-  for n, sFile in ipairs( tFiles ) do
-        if string.sub( sFile, 1, 1 ) ~= "." then
-          local sPath = "/api/"..sFile
-          if not fs.isDir( sPath ) then
-                os.loadAPI( sPath )
-                print("[API]:"..sPath)
-                sleep(.3)
-          end
-        end
-  end
-end
-end
 for i=1,rn do
-if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn) then
-BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo"..rn, "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn)
-else
+print(rn)
+rn = rn-1
 end
-if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
-BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.1)
 end
-if not fs.exists("/OS/Data/ProjectSecure/desktop") then
-BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop","identification = "..id9)
+
+if not debug then
+os.pullEvent = os.pullEventRaw
+sleep(.3)
 end
-if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS") then
-BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/loginbackground", "/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS")
+
+--Reboot with a countdown!
+--usage BFS.sdc(x,y)
+function sdc(x,y)
+timer = 5
+	for i=1,timer do
+		term.setCursorPos(x,y)
+		print("Rebooting in "..timer.."...")
+		sleep(1)
+	timer = timer-1
+end
 os.reboot()
 end
-rn = rn-1
-rn2 = rn2+1
-end
-end
 
-listcdwn()
-BFS.md("/OS/Data/ProjectSecure/.UserPref")
 
-function LockSC()
-if fs.exists("/OS/Data/ProjectSecure/.UserPref/Usn") then
-BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS",0)
-local readusrn = fs.open("/OS/Data/ProjectSecure/.UserPref/Usn", "r")
-readusern = readusrn.readAll()
-readusrn.close()
+--Downloads Files from any source
+--usage BFS.df("url", "path")
+function df(url, path, wdl)
+local check, msg = http.checkURL(url)
+if not check then
+write("Invalid URL: Error[" .. msg.."]")
 else
-BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored8",0)
-term.setCursorPos(1,1)
-print("[SETUP] Please enter your name.")
-createusn = read()
-Usn = fs.open("/OS/Data/ProjectSecure/.UserPref/Usn", "w")
-Usn.write(createusn)
-Usn.close()
+if path == nul or path == "" or path == "/" then
+write("Invalid Path")
+else
+	for i = 1, 3 do
+	local response = http.get(url)
+		if response then
+		local data = response.readAll()
+				if path then
+				local f = io.open(path, "w")
+				--print(url, wdl)
+				sleep(.1)
+				if wdl then
+				f:write(wdl.."\n")
+				end
+				f:write(data)
+				f:close()
+				end
+			return true
+			end
+		end
+	return false
+end
+end
 end
 
-if fs.exists("/OS/Data/ProjectSecure/.UserPref/Pswd") then
-local readusrpwd = fs.open("/OS/Data/ProjectSecure/.UserPref/Pswd", "r")
-local readuserpwd = readusrpwd.readAll()
-readusrpwd.close()
-term.setCursorPos(15,14)
-print(readusern)
-BFS.dply(1,1)
-BFS.tpla(1,2,"[Project Secure] Version:")
-BFS.readfile(26,2,"/OS/Data/ProjectSecure/version")
-term.setCursorPos(15,16)
-usrpwd = read("*")
-	if usrpwd == readuserpwd then
-	os.run({},"/OS/Data/ProjectSecure/desktop")
+--[Advance] Downloads Files from any source
+--usage BFS.dfa("url", "backupurl", "path")
+function dfa(original, backup, path)
+local ch3ck, msag = http.checkURL(original)
+if not fs.exists(path) then
+if ch3ck then
+df(original, path)
+else
+df(backup, path)
+end
+end
+end
+
+local function getDeviceSide(deviceType)
+  local lstSides = {"left","right","up","down","front","back"};
+  for i, side in pairs(lstSides) do
+    if (peripheral.isPresent(side)) then
+      if (peripheral.getType(side) == string.lower(deviceType)) then
+        return side;
+      end
+    end
+  end
+  return nil;
+end
+
+--Makes directory
+--usage BFS.md(directory you want to make)
+function md(dir)
+	if not fs.exists(dir) then
+	fs.makeDir(dir)
 	else
-	LockSC()
+	--print(dir.." already exist!")
 	end
+end 
+
+--Detects Rednet and turns it on("true") or off("false")
+--usage BFS.rd("true")
+function rd(quest)
+modemSide = getDeviceSide("modem")
+	if quest == "true" then
+		if (modemSide) then
+		rednet.open(modemSide)
+		end
+	else
+	rednet.close(modemSide)
+	end
+end
+
+--This function draws a image
+--usage BFS.dg("path", sleeptimeinseconds)
+function dg(path, speed)
+if term.isColor() then
+BGL = paintutils.loadImage(path) 
+paintutils.drawImage(BGL,1,1)
 else
-BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored8",0)
+local pic = fs.open(path, "r")
+local pic2 = pic.readAll()
+term.clear()
 term.setCursorPos(1,1)
-print("[SETUP] Please enter a password.")
-createpwd = read()
-rpwd = fs.open("/OS/Data/ProjectSecure/.UserPref/Pswd", "w")
-rpwd.write(createpwd)
-rpwd.close()
-BFS.sdc(1,18)
+--print(pic2)
+pic.close()
+end
+sleep(speed)
+end
+
+--This Function prints the content of a page
+--usage BFS.getlog("path")
+function getlog(path)
+local log = http.get(path) --Get contents of page
+local log2 = log.readAll()
+print(log2)
+end
+
+--OS function that updates the system
+--Usage BFS.verc("versionpath", "versionurl", "updatelocation", "updateurl")
+function verc(path, url, updl, updp, word)
+	if not fs.exists(path) or not fs.exists(updl)then
+	df(updp, updl, word)
+	df(url, path)
+	os.run({},updl)
+	--fs.delete(updl)
+	print("Successfully updated!")	
+	else
+	local vnid = http.get(url)
+	local rvnid = vnid.readAll()
+		if fs.exists(path) then
+		local readvn = fs.open(path, "r")
+		local readvern = readvn.readAll()
+		readvn.close()
+		vn = readvern
+			if vn == rvnid then
+			--fs.delete(updl)
+			print("The software on this computer is up to date.")
+			else
+			df(updp, updl)
+			df(url, path)
+			os.run({},updl)
+			--fs.delete(updl)
+			print("Successfully updated!")	
+			end
+		end
+	end
+end
+
+--Disables or Enables the disk startup.
+--usage BFS.DiskS("false") or BFS.DiskS("true")
+function DiskS(quest)
+settings.set("shell.allow_disk_startup", quest)
+settings.save(".settings")
+end
+
+--Compairs the udid nothing special.
+function Comp_udid(path, errorimg)
+if fs.exists(path) then
+	local fr = fs.open(path, "r")
+	udid1 = fr.readAll()
+	if fs.exists(path..".ref") then
+		local gf = fs.open(path..".ref", "r")
+		udid2 = gf.readAll()	
+	else		
+	udid2 = "NONE"
+	end
+ 	test = udid1
+	if udid1 == udid2 then
+	else
+	dg(errorimg, 0)
+		term.setCursorPos(1,1)
+	print("[Error]")
+	sleep(10)
+	os.reboot()
+	end
+	fr.close()
+	--gf.close()
+	end
+end
+
+--Generates a unique id for the computer (You can use this to make a unique rednet id) and will check (if you put true) if it has been tampered it will prevent the computer from booting.
+--  change 'compair' to true or false
+--Usage BFS.udid("Codename", "path", "Compair". )
+function udid(name, path)
+	if not fs.exists(path) then
+	local f = io.open(path, "w")
+	f:write(name)
+		for i = 1, 25 do
+		local items = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"}
+		f:write(items[math.random(1, #items)])
+		end
+	f:close()
+	if fs.exists(path..".ref") then
+	os.reboot()
+	else
+	fs.copy(path, path..".ref")
+	end
+	end
+end
+--Displays the computer label and id
+--Usage BFS.dply(5,8)
+function dply(x,y)
+	term.setCursorPos(x,y)
+	if nLabel then
+	print("Computer:"..nLabel..","..nID)
+	else
+	print("Computer: [N/A],"..nID)
+	end
+end
+
+--Text with location
+--Usage BFS.tpla(5,8,txt)
+function tpla(x,y,txt)
+	term.setCursorPos(x,y)
+	print(txt)
+end
+
+--read file and prints it to a location
+--Usage   readfile(1,4,/some/file/data)
+function readfile(x,y,file)
+term.setCursorPos(x,y)
+local readfl = fs.open(file, "r")
+readallfl = readfl.readAll()
+readfl.close()
+print(readallfl)
+end--Basic Functions API
+-----------------------------------
+--All Functions
+-----------------------------------
+--Reboot with a countdown!
+--Hint default is (1,18)
+--usage BFS.sdc(x,y)
+
+--Downloads Files from any source
+--usage BFS.df("url", "path")
+
+--Makes directory
+--usage BFS.md("path")
+
+--Detects Rednet and turns it on("true") or off("false")
+--usage BFS.rd("true")
+
+--This function draws a image
+--usage BFS.dg("path", sleeptimeinseconds)
+
+--This function prints the content of a page
+--usage BFS.getlog("path")
+
+--OS function that updates the system
+--Usage BFS.verc("versionpath", "versionurl", "updatelocation", "updateurl")
+
+--Disables or Enables the disk startup.
+--usage BFS.DiskS("false") or BFS.DiskS("true")
+
+--[Advance] Downloads Files from any source
+--usage BFS.dfa("url", "backupurl", "path")
+
+--Displays the computer label and id
+--Usage BFS.dply(5,8)
+-----------------------------------
+local nTime = os.time()
+local nDay = os.day()
+local nID = os.getComputerID()
+local nLabel = os.getComputerLabel()
+
+--This is a test function
+function cdwn()
+rn = 8
+for i=1,rn do
+print(rn)
+rn = rn-1
 end
 end
-LockSC()
+
+--Reboot with a countdown!
+--usage BFS.sdc(x,y)
+function sdc(x,y)
+timer = 5
+	for i=1,timer do
+		term.setCursorPos(x,y)
+		print("Rebooting in "..timer.."...")
+		sleep(1)
+	timer = timer-1
+end
+os.reboot()
+end
+
+
+--Downloads Files from any source
+--usage BFS.df("url", "path")
+function df(url, path, wdl)
+local check, msg = http.checkURL(url)
+if not check then
+write("Invalid URL: Error[" .. msg.."]")
+else
+if path == nul or path == "" or path == "/" then
+write("Invalid Path")
+else
+	for i = 1, 3 do
+	local response = http.get(url)
+		if response then
+		local data = response.readAll()
+				if path then
+				local f = io.open(path, "w")
+				--print(url, wdl)
+				sleep(.1)
+				if wdl then
+				f:write(wdl.."\n")
+				end
+				f:write(data)
+				f:close()
+				end
+			return true
+			end
+		end
+	return false
+end
+end
+end
+
+--[Advance] Downloads Files from any source
+--usage BFS.dfa("url", "backupurl", "path")
+function dfa(original, backup, path)
+local ch3ck, msag = http.checkURL(original)
+if not fs.exists(path) then
+if ch3ck then
+df(original, path)
+else
+df(backup, path)
+end
+end
+end
+
+local function getDeviceSide(deviceType)
+  local lstSides = {"left","right","up","down","front","back"};
+  for i, side in pairs(lstSides) do
+    if (peripheral.isPresent(side)) then
+      if (peripheral.getType(side) == string.lower(deviceType)) then
+        return side;
+      end
+    end
+  end
+  return nil;
+end
+
+--Makes directory
+--usage BFS.md(directory you want to make)
+function md(dir)
+	if not fs.exists(dir) then
+	fs.makeDir(dir)
+	else
+	--print(dir.." already exist!")
+	end
+end 
+
+--Detects Rednet and turns it on("true") or off("false")
+--usage BFS.rd("true")
+function rd(quest)
+modemSide = getDeviceSide("modem")
+	if quest == "true" then
+		if (modemSide) then
+		rednet.open(modemSide)
+		end
+	else
+	rednet.close(modemSide)
+	end
+end
+
+--This function draws a image
+--usage BFS.dg("path", sleeptimeinseconds)
+function dg(path, speed)
+if term.isColor() then
+BGL = paintutils.loadImage(path) 
+paintutils.drawImage(BGL,1,1)
+else
+local pic = fs.open(path, "r")
+local pic2 = pic.readAll()
+term.clear()
+term.setCursorPos(1,1)
+--print(pic2)
+pic.close()
+end
+sleep(speed)
+end
+
+--This Function prints the content of a page
+--usage BFS.getlog("path")
+function getlog(path)
+local log = http.get(path) --Get contents of page
+local log2 = log.readAll()
+print(log2)
+end
+
+--OS function that updates the system
+--Usage BFS.verc("versionpath", "versionurl", "updatelocation", "updateurl")
+function verc(path, url, updl, updp, word)
+	if not fs.exists(path) then
+	df(updp, updl)
+	df(url, path, word)
+	os.run({},updl)
+	--fs.delete(updl)
+	print("Successfully updated!")	
+	else
+	local vnid = http.get(url)
+	local rvnid = vnid.readAll()
+		if fs.exists(path) then
+		local readvn = fs.open(path, "r")
+		local readvern = readvn.readAll()
+		readvn.close()
+		vn = readvern
+			if vn == rvnid then
+			--fs.delete(updl)
+			print("The software on this computer is up to date.")
+			else
+			df(updp, updl)
+			df(url, path)
+			os.run({},updl)
+			--fs.delete(updl)
+			print("Successfully updated!")	
+			end
+		end
+	end
+end
+
+--Disables or Enables the disk startup.
+--usage BFS.DiskS("false") or BFS.DiskS("true")
+function DiskS(quest)
+settings.set("shell.allow_disk_startup", quest)
+settings.save(".settings")
+end
+
+--Compairs the udid nothing special.
+function Comp_udid(path, errorimg)
+if fs.exists(path) then
+	local fr = fs.open(path, "r")
+	udid1 = fr.readAll()
+	if fs.exists(path..".ref") then
+		local gf = fs.open(path..".ref", "r")
+		udid2 = gf.readAll()	
+	else		
+	udid2 = "NONE"
+	end
+ 	test = udid1
+	if udid1 == udid2 then
+	else
+	dg(errorimg, 0)
+		term.setCursorPos(1,1)
+	print("[Error]")
+	sleep(10)
+	os.reboot()
+	end
+	fr.close()
+	--gf.close()
+	end
+end
+
+--Generates a unique id for the computer (You can use this to make a unique rednet id) and will check (if you put true) if it has been tampered it will prevent the computer from booting.
+--  change 'compair' to true or false
+--Usage BFS.udid("Codename", "path", "Compair". )
+function udid(name, path)
+	if not fs.exists(path) then
+	local f = io.open(path, "w")
+	f:write(name)
+		for i = 1, 25 do
+		local items = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9"}
+		f:write(items[math.random(1, #items)])
+		end
+	f:close()
+	if fs.exists(path..".ref") then
+	os.reboot()
+	else
+	fs.copy(path, path..".ref")
+	end
+	end
+end
+--Displays the computer label and id
+--Usage BFS.dply(5,8)
+function dply(x,y)
+	term.setCursorPos(x,y)
+	if nLabel then
+	print("Computer:"..nLabel..","..nID)
+	else
+	print("Computer: [N/A],"..nID)
+	end
+end
+
+--Text with location
+--Usage BFS.tpla(5,8,txt)
+function tpla(x,y,txt)
+	term.setCursorPos(x,y)
+	print(txt)
+end
+
+--read file and prints it to a location
+--Usage   readfile(1,4,/some/file/data)
+function readfile(x,y,file)
+term.setCursorPos(x,y)
+local readfl = fs.open(file, "r")
+readallfl = readfl.readAll()
+readfl.close()
+print(readallfl)
+end
