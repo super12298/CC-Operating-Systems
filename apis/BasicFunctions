@@ -1,5 +1,8 @@
 --Basic Functions API
 -----------------------------------
+--Config (nul or blank == off and 1 == on)
+debug = nul
+-----------------------------------
 --All Functions
 -----------------------------------
 --Reboot with a countdown!
@@ -45,6 +48,11 @@ for i=1,rn do
 print(rn)
 rn = rn-1
 end
+end
+
+if not debug then
+os.pullEvent = os.pullEventRaw
+sleep(.3)
 end
 
 --Reboot with a countdown!
