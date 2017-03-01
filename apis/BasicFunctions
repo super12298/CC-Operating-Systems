@@ -208,8 +208,12 @@ end
 --Disables or Enables the disk startup.
 --usage BFS.DiskS("false") or BFS.DiskS("true")
 function DiskS(quest)
+bootFromDisk = settings.get("shell.allow_disk_startup", "not set")
+print(bootFromDisk)
+if bootFromDisk == true then
 settings.set("shell.allow_disk_startup", quest)
 settings.save(".settings")
+end
 end
 
 --Compairs the udid nothing special.
