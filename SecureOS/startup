@@ -3,7 +3,7 @@ term.setCursorPos(1,1)
 os.loadAPI("/api/BFS")
 BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
 --Eurobeat intensifies
-BFS.DiskS("false")
+BFS.DiskS(false)
 BFS.Comp_udid("/OS/Data/ProjectSecure/.UserPref/identification", "/OS/Data/ProjectSecure/.bootlogo/.Error")
 BFS.udid("Panda_", "/OS/Data/ProjectSecure/.UserPref/identification")
 function listcdwn()
