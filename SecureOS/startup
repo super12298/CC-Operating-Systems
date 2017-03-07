@@ -23,7 +23,7 @@ term.setCursorPos(1,1)
 sleep(.3)
   local tFiles = fs.list( "/api/" )
   table.sort( tFiles )
-  for n, sFile in ipairs( tFiles ) do"'"
+  for n, sFile in ipairs( tFiles ) do
         if string.sub( sFile, 1, 1 ) ~= "." then
           local sPath = "/api/"..sFile
           if not fs.isDir( sPath ) then
