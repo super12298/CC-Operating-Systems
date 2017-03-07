@@ -20,7 +20,6 @@ if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.3)
 if fs.exists( "/api/" ) and fs.isDir( "/api/" ) then
 term.setCursorPos(1,1)
-BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update","identification = "..id9)
 sleep(.3)
   local tFiles = fs.list( "/api/" )
   table.sort( tFiles )
@@ -52,7 +51,7 @@ end
 end
 for i=1,rn do
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn) then
-BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo"..rn, "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn)
+BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo"..rn, "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored".."'"..rn.."'")
 else
 end
 if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
