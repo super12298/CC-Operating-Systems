@@ -23,7 +23,7 @@ term.setCursorPos(1,1)
 sleep(.3)
   local tFiles = fs.list( "/api/" )
   table.sort( tFiles )
-  for n, sFile in ipairs( tFiles ) do
+  for n, sFile in ipairs( tFiles ) do"'"
         if string.sub( sFile, 1, 1 ) ~= "." then
           local sPath = "/api/"..sFile
           if not fs.isDir( sPath ) then
@@ -51,14 +51,14 @@ end
 end
 for i=1,rn do
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn) then
-BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo"..rn, "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored".."'"..rn.."'")
+BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo"..rn, "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored")
 else
 end
 if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2) then
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored"..rn2,.1)
 end
 if not fs.exists("/OS/Data/ProjectSecure/desktop") then
-BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop","identification = "..id9)
+BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop","identification = ".."'"..id9.."'")
 end
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS") then
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/loginbackground", "/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS")
