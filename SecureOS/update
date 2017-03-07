@@ -44,7 +44,7 @@ dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "http
 fs.delete("/OS/Data/ProjectSecure/desktop")
 local id8 = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
 local id9 = id8.readAll()
-os.run({},"/OS/Data/ProjectSecure/desktop")
+os.run({},"startup")
 --[[
 if identification == id9 then
 df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop","identification = "..id9)
