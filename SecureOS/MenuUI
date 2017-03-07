@@ -1,1 +1,16 @@
-print("Temperary File")
+local redid = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
+local readid = redid.readAll()
+redid.close()
+
+--print(readid) print(identification)
+
+if readid == identification then
+BFS.rd("true")
+--print("TRUE") sleep(1)
+BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update")
+else
+BFS.rd("false")
+print("The software on this computer is up to date.")
+--print("FALSE") sleep(1)
+end
+print("'".."Temperary File".."'")
