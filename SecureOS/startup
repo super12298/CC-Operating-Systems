@@ -6,7 +6,9 @@ BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "
 if not fs.exists("/OS/Data/ProjectSecure/version") or not fs.exists("/OS/Data/ProjectSecure/.UserPref/update") then
 BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update")
 end
-
+if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored8") then
+shell.run("/OS/Data/ProjectSecure/.UserPref/update")
+end
 BFS.DiskS(false)
 BFS.Comp_udid("/OS/Data/ProjectSecure/.UserPref/identification", "/OS/Data/ProjectSecure/.bootlogo/.Error")
 BFS.udid("Panda_", "/OS/Data/ProjectSecure/.UserPref/identification")
