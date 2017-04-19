@@ -48,6 +48,14 @@ os.run({},"startup")
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1") then
 print("False")
 sleep(1)
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo1", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo2", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored2")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo3", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored3")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo4", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored4")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo5", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored5")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo6", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored6")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo7", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored7")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo8", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored8")
 end
 if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1") then
 print("True")
