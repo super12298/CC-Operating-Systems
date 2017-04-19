@@ -46,12 +46,12 @@ local id8 = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
 local id9 = id8.readAll()
 os.run({},"startup")
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1") then
-print("AAAAAAAAAAAAAA")
-sleep(6)
+print("False")
+sleep(1)
 end
 if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1") then
-print("BBBBBBBBBBBBBB")
-sleep(6)
+print("True")
+sleep(1)
 end
 --[[
 if identification == id9 then
