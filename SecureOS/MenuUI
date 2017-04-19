@@ -1,16 +1,43 @@
+identification = 'Panda_bizvz9flc5hyahtmspao7sguv'
 local redid = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
 local readid = redid.readAll()
 redid.close()
-
+print("")
 --print(readid) print(identification)
 
 if readid == identification then
 BFS.rd("true")
 --print("TRUE") sleep(1)
 BFS.verc("/OS/Data/ProjectSecure/version", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/version", "/OS/Data/ProjectSecure/.UserPref/update", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/update")
+sleep(1)
 else
 BFS.rd("false")
 print("The software on this computer is up to date.")
 --print("FALSE") sleep(1)
+sleep(1)
 end
+
+
+function drawdesk()
 print("'".."Temperary File".."'")
+if term.isColor() then
+term.setBackgroundColor( colors.blue )
+term.clear()
+term.setBackgroundColor( colors.gray )
+term.setTextColor( colors.white )
+
+term.setCursorPos(1,19)
+print("                                                   ")
+term.setCursorPos(1,1)
+print("                                                   ")
+term.setCursorPos(2,1)
+print("[Menu]")
+term.setCursorPos(42,1)
+print("[Settings]")
+else
+
+end
+
+
+end
+drawdesk()
