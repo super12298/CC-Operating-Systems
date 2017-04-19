@@ -49,6 +49,10 @@ if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1") then
 print("AAAAAAAAAAAAAA")
 sleep(6)
 end
+if fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1") then
+print("BBBBBBBBBBBBBB")
+sleep(6)
+end
 --[[
 if identification == id9 then
 df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/MenuUI", "/OS/Data/ProjectSecure/desktop","identification = "..id9)
