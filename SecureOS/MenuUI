@@ -1,4 +1,3 @@
-identification = 'Panda_bizvz9flc5hyahtmspao7sguv'
 local redid = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
 local readid = redid.readAll()
 redid.close()
