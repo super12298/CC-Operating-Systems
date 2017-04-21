@@ -2,7 +2,7 @@ w, h = term.getSize()
 slc = 0
 tBarC = 8
 tBartC = 1
-debug = 1
+debug = 0
 local redid = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
 local readid = redid.readAll()
 redid.close()
