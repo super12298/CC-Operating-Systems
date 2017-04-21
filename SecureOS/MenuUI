@@ -1,7 +1,10 @@
+identification = 'Panda_tx1uubplo6v5kr0zfoj90cq2r'
+2
 w, h = term.getSize()
 slc = 0
 tBarC = 8
 tBartC = 1
+debug = 0
 local redid = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
 local readid = redid.readAll()
 redid.close()
@@ -57,7 +60,12 @@ print(" Shutdown ")
 term.setCursorPos(1,3)
 print(" Restart  ")
 term.setCursorPos(1,4)
+if debug==1 then
+print("RESTART_SP")
+else
 print("          ")
+end
+
 end
 
 function drawsettings()
@@ -68,7 +76,15 @@ print(" UI Color ")
 term.setCursorPos(42,3)
 print("Background")
 term.setCursorPos(42,4)
-print("          ")
+print("Change PSW")
+term.setCursorPos(42,5)
+print("Change USR")
+term.setCursorPos(42,6)
+print("----------")
+term.setCursorPos(42,7)
+print("Reset DATA")
+term.setCursorPos(42,8)
+print("----------")
 end
  
 drawdesk()
@@ -92,6 +108,34 @@ local event, button, X, Y = os.pullEventRaw()
        os.shutdown()
        elseif X>=2 and X<=9 and Y==3 and button==1 then slc = 0
        os.reboot()
+       elseif X>=2 and X<=9 and Y==4 and button==1 then slc = 0
+       if debug==1 then
+       textutils.slowPrint("We're no strangers to love You know the rules and so do I A full commitment's what I'm thinking of You wouldn't get this from any other guy I just want to tell you how I'm feeling Gotta make you understand Never gonna give you up, never gonna let you down Never gonna run around and desert you Never gonna make you cry, never gonna say goodbye Never gonna tell a lie and hurt you We've known each other for so long Your heart's been aching but you're too shy to say it Inside we both know what's been going on We know the game and we're gonna play it And if you ask me how I'm feeling Don't tell me you're too blind to see Never gonna give you up, never gonna let you down Never gonna run around and desert you Never gonna make you cry, never gonna say goodbye Never gonna tell a lie and hurt you Never gonna give you up, never gonna let you down Never gonna run around and desert you Never gonna make you cry, never gonna say goodbye Never gonna tell a lie and hurt you We've known each other for so long Your heart's been aching but you're too shy to say it Inside we both know what's been going on We know the game and we're gonna play it I just want to tell you how I'm feeling Gotta make you understand Never gonna give you up, never gonna let you down Never gonna run around and desert you Never gonna make you cry, never gonna say goodbye Never gonna tell a lie and hurt you")
+       sleep(4)
+       drawdesk()
+       end
+       else
+       slc = 0
+       drawdesk()
+     end
+     end
+   elseif slc == 2 then
+   if event == "mouse_click" then
+     if X >=42 and X <=51 and button == 1 and Y==2 then slc = 0
+		 term.setCursorPos(20,2)
+       print("UI_COLOR_WIP")
+       elseif X>=42 and X<=51 and Y==3 and button==1 then slc = 0
+		 term.setCursorPos(20,2)
+       print("UI_BACKGROUND_WIP")
+       elseif X>=42 and X<=51 and Y==4 and button==1 then slc = 0
+		 term.setCursorPos(20,2)
+       print("UI_PASSWORD_CHANGE_WIP")
+       elseif X>=42 and X<=51 and Y==5 and button==1 then slc = 0
+		 term.setCursorPos(20,2)
+       print("UI_USERNAME_CHANGE_WIP")
+       elseif X>=42 and X<=51 and Y==7 and button==1 then slc = 0
+		 term.setCursorPos(20,2)
+       print("UI_RESET _COMP_WIP")
        else
        slc = 0
        drawdesk()
