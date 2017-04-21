@@ -44,14 +44,17 @@ print("[Menu]")
 term.setCursorPos(42,1)
 print("[Settings]")
 else
+term.setBackgroundColor( colors.white )
 term.clear()
+term.setBackgroundColor( colors.gray )
+term.setTextColor( colors.white )
 term.setCursorPos(1,19)
 print("                                                   ")
 term.setCursorPos(1,1)
 print("                                                   ")
 term.setCursorPos(2,1)
 print("[Menu]")
-term.setCursorPos(2,2)
+term.setCursorPos(42,1)
 print("[Settings]")
 end
 end
