@@ -1,6 +1,15 @@
 term.setCursorBlink(false)
 term.clear()
 term.setCursorPos(1,1)
+
+success, message = http.checkURL( "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf" )
+if success then
+ofv1 = http.get("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf")
+ofv2 = ofv1.readAll()
+else
+ofv2 = 0
+end
+debug = ofv2
 if not fs.exists( "/api/BFS" ) then
 shell.run("wget","https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/apis/BasicFunctions","/api/BFS")
 end
@@ -108,6 +117,9 @@ print(readusern)
 BFS.dply(1,1)
 BFS.tpla(1,2,"[Project Secure] Version:")
 BFS.readfile(26,2,"/OS/Data/ProjectSecure/version")
+if debug == "1" then
+write(" [DEV EDITION]  ")
+end
 term.setCursorPos(15,16)
 usrpwd = read("*")
 	if usrpwd == readuserpwd then
