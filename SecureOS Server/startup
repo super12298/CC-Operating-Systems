@@ -1,1 +1,5 @@
+if not fs.exists( "/api/BFS" ) then
+shell.run("wget","https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/apis/BasicFunctions","/api/BFS")
+end
+--BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
 
