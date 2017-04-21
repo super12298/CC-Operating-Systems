@@ -2,7 +2,7 @@ term.setCursorBlink(false)
 term.clear()
 term.setCursorPos(1,1)
 
-success, message = http.checkURL( "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf" )
+success, message = http.get( "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf" )
 if success then
 ofv1 = http.get("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf")
 ofv2 = ofv1.readAll()
