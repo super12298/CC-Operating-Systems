@@ -1,3 +1,4 @@
+term.setBackgroundColor( colors.gray )
 term.setCursorBlink(false)
 term.clear()
 term.setCursorPos(1,1)
@@ -112,6 +113,8 @@ local readusrpwd = fs.open("/OS/Data/ProjectSecure/.UserPref/Pswd", "r")
 local readuserpwd = readusrpwd.readAll()
 readusrpwd.close()
 if not term.isColor() then
+term.setBackgroundColor( colors.black )
+term.clear()
 term.setBackgroundColor( colors.gray )
 term.setTextColor( colors.white )
 end
