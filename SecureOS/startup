@@ -1,7 +1,6 @@
 term.setCursorBlink(false)
 term.clear()
 term.setCursorPos(1,1)
-
 success, message = http.get( "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf" )
 if success then
 ofv1 = http.get("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf")
@@ -112,6 +111,10 @@ if fs.exists("/OS/Data/ProjectSecure/.UserPref/Pswd") then
 local readusrpwd = fs.open("/OS/Data/ProjectSecure/.UserPref/Pswd", "r")
 local readuserpwd = readusrpwd.readAll()
 readusrpwd.close()
+if not term.isColor() then
+term.setBackgroundColor( colors.gray )
+term.setTextColor( colors.white )
+end
 term.setCursorPos(15,14)
 print(readusern)
 BFS.dply(1,1)
