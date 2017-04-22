@@ -123,10 +123,7 @@ local event, button, X, Y = os.pullEventRaw()
 		 end
        term.clear()
        term.setCursorPos(1,1)
-       textutils.slowPrint("It's Dangerous to Go Alone! Take This.")
-       textutils.slowPrint("      || ________________")
-       textutils.slowPrint("O|===|* >________________>")
-       textutils.slowPrint("      ||")
+		 BFS.chlog("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf%20text","slow")
        end
        else
        slc = 0
