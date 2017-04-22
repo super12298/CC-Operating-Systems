@@ -1,7 +1,7 @@
 --Basic Functions API 
 -----------------------------------
 --Config (nul or blank == off and 1 == on)
-debug = 1
+debug = nul
 -----------------------------------
 --All Functions
 -----------------------------------
