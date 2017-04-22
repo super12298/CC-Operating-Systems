@@ -1,7 +1,7 @@
---Basic Functions API
+--Basic Functions API 
 -----------------------------------
 --Config (nul or blank == off and 1 == on)
-debug = nul
+debug = 1
 -----------------------------------
 --All Functions
 -----------------------------------
@@ -286,4 +286,23 @@ local readfl = fs.open(file, "r")
 readallfl = readfl.readAll()
 readfl.close()
 print(readallfl)
+end
+
+--used for change log 'slow' or 'fast'
+--function BFS.chlog("url","slow")
+function chlog(url,printsp)
+success, message = http.get(url)
+if success then
+datard1 = http.get(url)
+datard2 = datard1.readAll()
+if printsp =="fast" then
+print(datard2)
+elseif printsp =="slow" then
+textutils.slowPrint(datard2)
+else
+error("Incorrect format. \n[Usage]:\nBFS.chlog('url','slow') \nBFS.chlog('url','fast') ")
+end
+else
+print("404 Page not found.")
+end
 end
