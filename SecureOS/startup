@@ -91,7 +91,10 @@ end
 
 listcdwn()
 BFS.md("/OS/Data/ProjectSecure/.UserPref")
-
+BFS.md("/OS/Data/ProjectSecure/.UserFiles")
+BFS.md("/OS/Data/Backgrounds/")
+BFS.md("/OS/Data/Store/")
+BFS.md("/OS/Data/Apps/")
 function LockSC()
 if fs.exists("/OS/Data/ProjectSecure/.UserPref/Usn") then
 BFS.dg("/OS/Data/ProjectSecure/.bootlogo/.LoginLogoPS",0)
