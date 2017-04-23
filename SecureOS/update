@@ -1,7 +1,7 @@
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/Store", "/OS/Data/Store/Launch")
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/startup", "/startup")
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/apis/BasicFunctions", "/api/BFS")
-sleep(5)
+sleep(.3)
 --BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
 fs.delete("/OS/Data/ProjectSecure/desktop")
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1") then
@@ -20,4 +20,4 @@ print("True")
 sleep(.3)
 end
 print("Please reboot to apply changes.")
-sleep(1)
+sleep(1.5)
