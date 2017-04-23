@@ -7,7 +7,7 @@ sleep(.3)
 --BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
 fs.delete("/OS/Data/ProjectSecure/desktop")
 if not fs.exists("/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1") then
-print("False")
+print("Boot...Error")
 sleep(.3)
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo1", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored1")
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo2", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored2")
@@ -18,7 +18,7 @@ BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo7", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored7")
 BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/Bootlogo/bootlogo8", "/OS/Data/ProjectSecure/.bootlogo/.bootlogoColored8")
 else
-print("True")
+print("Boot...OK")
 sleep(.3)
 end
 print("Please reboot to apply changes.")
