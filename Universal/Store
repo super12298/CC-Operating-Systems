@@ -1,0 +1,7 @@
+function pnt_menu()
+if term.isColor() then
+
+else
+
+end
+end
