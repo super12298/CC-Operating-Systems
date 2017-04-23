@@ -41,6 +41,8 @@ term.setCursorPos(2,1)
 print("[Menu]")
 term.setCursorPos(42,1)
 print("[Settings]")
+term.setCursorPos(9,1)
+--print("[Apps]")
 else
 term.setBackgroundColor( colors.white )
 term.clear()
@@ -54,6 +56,8 @@ term.setCursorPos(2,1)
 print("[Menu]")
 term.setCursorPos(42,1)
 print("[Settings]")
+term.setCursorPos(9,1)
+--print("[Apps]")
 end
 end
 
@@ -92,6 +96,17 @@ print("Reset DATA")
 term.setCursorPos(42,8)
 print("----------")
 end
+
+function drawapps()
+term.setTextColor(256)
+term.setBackgroundColor(128)
+term.setCursorPos(9,2)
+print("  Appstore  ")
+term.setCursorPos(9,3)
+print("File Manager")
+term.setCursorPos(9,4)
+print("  All Apps  ")
+end
  
 drawdesk()
 while true do
@@ -104,6 +119,9 @@ local event, button, X, Y = os.pullEventRaw()
       elseif X >=42 and X <=51 and Y==1 and button ==1 then
       drawsettings()
 		slc = 2
+		elseif X >=9 and X <=15 and Y==1 and button ==1 then
+      drawapps()
+		slc = 3
       else
       drawdesk()
       end
@@ -152,6 +170,22 @@ local event, button, X, Y = os.pullEventRaw()
        fs.delete("/OS/Data/ProjectSecure/.UserPref")
        fs.delete("/OS/Data/ProjectSecure/desktop")
        os.reboot()
+       else
+       slc = 0
+       drawdesk()
+     end
+     end
+     elseif slc == 3 then
+     if event == "mouse_click" then
+       if X >=9 and X <=20 and button == 1 and Y==2 then slc = 0
+		 term.setCursorPos(20,2)       
+       print("  Load_Appstore  ")
+       elseif X >=9 and X <=20 and Y==3 and button==1 then slc = 0
+		 term.setCursorPos(20,3)
+       print("  Load_File_Manager")
+       elseif X >=9 and X <=20 and Y==4 and button==1 then slc = 0
+		 term.setCursorPos(20,4)
+       print("  Load_All_Apps  ")
        else
        slc = 0
        drawdesk()
