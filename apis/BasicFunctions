@@ -319,9 +319,11 @@ function chaf(url, path)
 		vn = readvern
 			if vn == rvnid then
 			print(path.."...OK")
+			sleep(.1)
 			else
 			df(url, path)
 			print(path.." has been updated!")
+			sleep(.1)
 			end
 		end
 end
