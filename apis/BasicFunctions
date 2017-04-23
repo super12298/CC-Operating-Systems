@@ -308,11 +308,8 @@ end
 end
 
 --compares HTML and file
---Usage BFS.chaf(url, path, sleep)
-function chaf(url, path, sleep)
-if sleep == nul then
-sleep = 0
-end
+--Usage BFS.chaf(url, path)
+function chaf(url, path)
 	local vnid = http.get(url)
 	local rvnid = vnid.readAll()
 		if fs.exists(path) then
@@ -322,11 +319,9 @@ end
 		vn = readvern
 			if vn == rvnid then
 			print(path.."...OK")
-			sleep(sleep)
 			else
 			df(url, path)
 			print(path.." has been updated!")
-			sleep(sleep)	
 			end
 		end
 end
