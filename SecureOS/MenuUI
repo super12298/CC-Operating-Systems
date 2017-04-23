@@ -27,14 +27,12 @@ print("The software on this computer is up to date.")
 --print("FALSE") sleep(1)
 sleep(1)
 end
-
 function drawdesk()
 if term.isColor() then
 term.setBackgroundColor( colors.blue )
 term.clear()
 term.setBackgroundColor( colors.gray )
 term.setTextColor( colors.white )
-
 term.setCursorPos(1,19)
 print("                                                   ")
 term.setCursorPos(1,1)
@@ -68,9 +66,10 @@ term.setCursorPos(1,3)
 print(" Restart  ")
 term.setCursorPos(1,4)
 if debug=="1" then
-print("RESTART_SP")
+print("[Dev_MENU]")
 else
-print("          ")
+--print("          ")
+print("Change Log")
 end
 
 end
@@ -116,14 +115,18 @@ local event, button, X, Y = os.pullEventRaw()
        elseif X>=2 and X<=9 and Y==3 and button==1 then slc = 0
        os.reboot()
        elseif X>=1 and X<=11 and Y==4 and button==1 then slc = 0
-       if debug=="1" then
+       
 		 if term.isColor() then
 		 term.setBackgroundColor( colors.black )
 		 term.setTextColor( colors.green )
 		 end
        term.clear()
        term.setCursorPos(1,1)
+       if debug=="1" then
 		 BFS.chlog("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf%20text","slow")
+		 else
+		 print("[Change Log]:")
+		 BFS.chlog("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/change%20log","slow")      
        end
        else
        slc = 0
