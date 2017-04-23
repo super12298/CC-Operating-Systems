@@ -306,3 +306,27 @@ else
 print("404 Page not found.")
 end
 end
+
+--compares HTML and file
+--Usage BFS.chaf(url, path, sleep)
+function chaf(url, path, sleep)
+if sleep == nul then
+sleep = 0
+end
+	local vnid = http.get(url)
+	local rvnid = vnid.readAll()
+		if fs.exists(path) then
+		local readvn = fs.open(path, "r")
+		local readvern = readvn.readAll()
+		readvn.close()
+		vn = readvern
+			if vn == rvnid then
+			print(path.."...OK")
+			sleep(sleep)
+			else
+			df(url, path)
+			print(path.." has been updated!")
+			sleep(sleep)	
+			end
+		end
+end
