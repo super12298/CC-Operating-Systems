@@ -39,7 +39,7 @@ end
 end
 df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/startup", "/startup")
 df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/apis/BasicFunctions", "/api/BFS")
-df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/Store", "/OS/Data/Store/Launch")
+df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/Store", "/OS/Data/Store/Launch")
 fs.delete("api/Bedrock")
 --dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
 fs.delete("/OS/Data/ProjectSecure/desktop")
