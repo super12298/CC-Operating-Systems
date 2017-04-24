@@ -1,7 +1,13 @@
 function pnt_menu()
+term.clear()
+term.setCursorPos(1,1)
+print(osname.."'s Appstore")
 if term.isColor() then
 
 else
 
 end
+end
+function loadscrn()
+BFS.dg("/OS/Data/Store/images/splash",.3)
 end
