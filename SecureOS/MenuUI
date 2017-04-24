@@ -120,7 +120,7 @@ local event, button, X, Y = os.pullEventRaw()
       drawsettings()
 		slc = 2
 		elseif X >=9 and X <=15 and Y==1 and button ==1 then
-      drawapps()
+      --drawapps()
 		--slc = 3
       else
       drawdesk()
