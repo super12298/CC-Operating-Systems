@@ -1,8 +1,11 @@
-BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/Store", "/OS/Data/Store/Launch")
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/startup", "/startup")
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/apis/BasicFunctions", "/api/BFS")
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/Backgrounds/ClassicCCOS", "/OS/Data/Backgrounds/ClassicCCOS")
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/Backgrounds/Default", "/OS/Data/Backgrounds/Default")
+BFS.chaf("https://github.com/super12298/CC-Operating-Systems/blob/master/Universal/apps/store/images/splash", "/OS/Data/Store/images/splash")
+BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/Store", "/OS/Data/Store/Launch")
+BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/store/cache", "/OS/Data/Store/cache")
+
 
 sleep(.3)
 --BFS.dfa("https://raw.githubusercontent.com/oeed/Bedrock/master/Build/Bedrock", "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Apis/Bedrock/Bedrock%20Build%3A%20548", "api/Bedrock")
