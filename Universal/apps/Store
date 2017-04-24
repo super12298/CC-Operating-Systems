@@ -13,7 +13,7 @@ BFS.tpla(1,1,"["..osname.."'s Appstore]:")
 sleep(.5)
 end
 function loadscrn()
-print("If you see this something went wrong...")
+print("Splash...OK")
 BFS.dg("/OS/Data/Store/images/splash",.3)
 end
 pnt_menu()
