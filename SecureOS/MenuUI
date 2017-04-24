@@ -180,6 +180,7 @@ local event, button, X, Y = os.pullEventRaw()
        if X >=9 and X <=20 and button == 1 and Y==2 then slc = 0
 		 term.setCursorPos(20,2)       
        print("  Load_Appstore  ")
+       shell.run("/OS/Data/Store/Launch")
        elseif X >=9 and X <=20 and Y==3 and button==1 then slc = 0
 		 term.setCursorPos(20,3)
        print("  Load_File_Manager")
