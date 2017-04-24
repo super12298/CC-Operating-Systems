@@ -121,7 +121,7 @@ local event, button, X, Y = os.pullEventRaw()
 		slc = 2
 		elseif X >=9 and X <=15 and Y==1 and button ==1 then
       drawapps()
-		slc = 3
+		--slc = 3
       else
       drawdesk()
       end
@@ -175,7 +175,7 @@ local event, button, X, Y = os.pullEventRaw()
        drawdesk()
      end
      end
-     elseif slc == 4 then
+     elseif slc == 3 then
      if event == "mouse_click" then
        if X >=9 and X <=20 and button == 1 and Y==2 then slc = 0
 		 term.setCursorPos(20,2)       
