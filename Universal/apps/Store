@@ -14,7 +14,9 @@ sleep(.5)
 end
 function loadscrn()
 print("Splash...OK")
-BFS.dg("/OS/Data/Store/images/splash",.3)
+sleep(.5)
+term.clear()
+BFS.dg("/OS/Data/Store/images/splash",.5)
 end
 pnt_menu()
 loadscrn()
