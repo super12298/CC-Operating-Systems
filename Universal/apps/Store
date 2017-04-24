@@ -1,13 +1,20 @@
+osname ="Project Secure"
+
+
 function pnt_menu()
 term.clear()
-term.setCursorPos(1,1)
-print(osname.."'s Appstore")
 if term.isColor() then
-
+term.setBackgroundColor( colors.blue )
+term.setTextColor( colors.white )
 else
-
+--stuff for black and white
 end
+BFS.tpla(1,1,"["..osname.."'s Appstore]:")
+sleep(.5)
 end
 function loadscrn()
+print("If you see this something went wrong...")
 BFS.dg("/OS/Data/Store/images/splash",.3)
 end
+pnt_menu()
+loadscrn()
