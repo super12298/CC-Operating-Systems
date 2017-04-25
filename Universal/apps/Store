@@ -1,22 +1,24 @@
 osname ="Project Secure"
 
-
+function randomColor()
+local items = {colors.orange,colors.blue,colors.gray,colors.green,colors.red,colors.pink}
+Color = items[math.random(1, #items)]
+end
 function pnt_menu()
 term.clear()
 if term.isColor() then
-term.setBackgroundColor( colors.blue )
-term.setTextColor( colors.white )
+randomColor()
+term.setBackgroundColor( Color )
+term.setTextColor( 1 )
 else
 --stuff for black and white
 end
-BFS.tpla(1,1,"["..osname.."'s Appstore]:")
-sleep(.5)
 end
 function loadscrn()
 print("Splash...OK")
-sleep(.5)
 term.clear()
-BFS.dg("/OS/Data/Store/images/splash",.5)
+BFS.dg("/OS/Data/Store/images/splash",.2)
+BFS.tpla(11,17,"["..osname.."'s Appstore]")
 end
 pnt_menu()
 loadscrn()
