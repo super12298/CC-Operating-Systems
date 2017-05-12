@@ -1,4 +1,3 @@
-identification = 'Panda_rlvkd8mesqmw86h5pgwxdmrig'
 w, h = term.getSize()
 slc = 0
 tBarC = 8
