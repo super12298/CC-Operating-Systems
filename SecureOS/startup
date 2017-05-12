@@ -110,6 +110,9 @@ createusn = read()
 Usn = fs.open("/OS/Data/ProjectSecure/.UserPref/Usn", "w")
 Usn.write(createusn)
 Usn.close()
+if fs.exists( "temp" ) then
+os.run({},"/OS/Data/ProjectSecure/desktop")
+end
 end
 
 if fs.exists("/OS/Data/ProjectSecure/.UserPref/Pswd") then
@@ -145,6 +148,9 @@ createpwd = read()
 rpwd = fs.open("/OS/Data/ProjectSecure/.UserPref/Pswd", "w")
 rpwd.write(createpwd)
 rpwd.close()
+if fs.exists( "temp" ) then
+os.run({},"/OS/Data/ProjectSecure/desktop")
+end
 BFS.sdc(1,18)
 end
 end
