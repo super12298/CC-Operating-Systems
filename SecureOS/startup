@@ -136,9 +136,11 @@ end
 term.setCursorPos(15,16)
 usrpwd = read("*")
 	if usrpwd == readuserpwd then
+	if not fs.exists( "temp" ) then
 	File = fs.open("temp", "w")
 	File.write(" ")
 	File.close()
+	end
 	os.run({},"/OS/Data/ProjectSecure/desktop")
 	else
 	LockSC()
