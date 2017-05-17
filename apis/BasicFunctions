@@ -218,11 +218,16 @@ end
 --Disables or Enables the disk startup.
 --usage BFS.DiskS("false") or BFS.DiskS("true")
 function DiskS(quest)
+if nOS == COS[2] or nOS == COS[3] or nOS == COS[4] then
+print("["..nOS.."]: Compatibility mode activated.")
+sleep(.3)
+else
 bootFromDisk = settings.get("shell.allow_disk_startup", "not set")
 print(bootFromDisk)
 if bootFromDisk == true then
 settings.set("shell.allow_disk_startup", quest)
 settings.save(".settings")
+end
 end
 end
 
