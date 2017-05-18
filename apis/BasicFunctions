@@ -218,7 +218,7 @@ end
 --Disables or Enables the disk startup.
 --usage BFS.DiskS("false") or BFS.DiskS("true")
 function DiskS(quest)
-if nOS == COS[3] or nOS == COS[4] or nOS == "Error" then
+if nOS == COS[3] or nOS == COS[4] then
 print("["..nOS.."]: Compatibility mode activated.")
 sleep(.3)
 else
@@ -230,13 +230,6 @@ settings.save(".settings")
 end
 end
 end
-
-local Dok, err = pcall(DiskS)
-if not Dok then
-print ("[DiskS]: "..err)
-nOS = "Error"
-end
-
 
 --Compairs the udid nothing special.
 function Comp_udid(path, errorimg)
