@@ -4,6 +4,7 @@ BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/mast
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/Backgrounds/Default", "/OS/Data/Backgrounds/Default")
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/store/images/splash%20transparent", "/OS/Data/Store/images/splash")
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/Store", "/OS/Data/Store/Launch")
+BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/store/AppManager", "/OS/Data/Store/AppUI")
 BFS.chaf("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/store/cache", "/OS/Data/Store/cache")
 
 
