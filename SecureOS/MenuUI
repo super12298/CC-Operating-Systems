@@ -1,3 +1,4 @@
+BFS.setl(identification)
 w, h = term.getSize()
 slc = 0
 tBarC = 8
