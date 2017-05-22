@@ -342,3 +342,11 @@ function chaf(url, path)
 			end
 		end
 end
+
+--sets a label
+--Usage BFS.setl("Comp_2")
+function setl(name)
+if os.getComputerLabel() == nul then
+os.setComputerLabel(name)
+end
+end
