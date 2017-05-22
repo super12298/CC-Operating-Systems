@@ -201,6 +201,16 @@ local event, button, X, Y = os.pullEventRaw()
        if X >=9 and X <=20 and button == 1 and Y==2 then slc = 0
 		 term.setCursorPos(20,2)       
        print("  Load_Appstore  ")
+	   if not fs.exists( "/OS/Data/Store/Launch" ) then
+	   print("/OS/Data/Store/Launch...updated")
+	   BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/Store", "/OS/Data/Store/Launch")
+	   sleep(.3)
+	   end
+	   if not fs.exists( "/OS/Data/Store/images/splash" ) then
+	   print("/OS/Data/Store/images/splash...updated")
+	   BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/store/images/splash%20transparent", "/OS/Data/Store/images/splash")
+	   sleep(.3)
+	   end
        os.run({},"/OS/Data/Store/Launch")
        elseif X >=9 and X <=20 and Y==3 and button==1 then slc = 0
 		 term.setCursorPos(20,3)
