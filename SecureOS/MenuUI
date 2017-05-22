@@ -16,6 +16,14 @@ ofv2 = 0
 end
 debug = ofv2
 
+success, message = http.get( "https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/hotfix/enable_me" )
+if success then
+ofv3 = http.get("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/hotfix/enable_me")
+ofv4 = ofv3.readAll()
+else
+ofv4 = 0
+end
+
 if readid == identification then
 BFS.rd("true")
 --print("TRUE") sleep(1)
@@ -42,7 +50,9 @@ print("[Menu]")
 term.setCursorPos(42,1)
 print("[Settings]")
 term.setCursorPos(9,1)
---print("[Apps]")
+if ofv4 == "1" then
+print("[Apps]")
+end
 else
 term.setBackgroundColor( colors.white )
 term.clear()
@@ -57,7 +67,9 @@ print("[Menu]")
 term.setCursorPos(42,1)
 print("[Settings]")
 term.setCursorPos(9,1)
---print("[Apps]")
+if ofv4 == "1" then
+print("[Apps]")
+end
 end
 end
 
@@ -120,8 +132,10 @@ local event, button, X, Y = os.pullEventRaw()
       drawsettings()
 		slc = 2
 		elseif X >=9 and X <=15 and Y==1 and button ==1 then
-      --drawapps()
-		--slc = 3
+			if ofv4 == "1" then
+			drawapps()
+			slc = 3
+			end
       else
       drawdesk()
       end
