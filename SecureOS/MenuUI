@@ -3,6 +3,7 @@ w, h = term.getSize()
 slc = 0
 tBarC = 8
 tBartC = 1
+backgroundno = 0
 local redid = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
 local readid = redid.readAll()
 redid.close()
@@ -25,6 +26,24 @@ else
 ofv4 = 0
 end
 
+function runbackground()
+term.setCursorPos(1,2)
+if backgroundno == 999 then
+BFS.dg("/OS/Data/Backgrounds/Default", 0)
+end
+if backgroundno == 0 then
+term.setBackgroundColor( colors.blue )
+term.clear()
+end
+if backgroundno == 1 then
+term.setBackgroundColor( colors.red )
+term.clear()
+end
+if backgroundno == 2 then
+BFS.dg("/OS/Data/Backgrounds/ClassicCCOS", 0)
+end
+end
+
 if readid == identification then
 BFS.rd("true")
 --print("TRUE") sleep(1)
@@ -38,12 +57,14 @@ sleep(1)
 end
 function drawdesk()
 if term.isColor() then
-term.setBackgroundColor( colors.blue )
 term.clear()
+runbackground()
 term.setBackgroundColor( colors.gray )
 term.setTextColor( colors.white )
+if backgroundno == 0 or backgroundno == 1 then
 term.setCursorPos(1,19)
 print("                                                   ")
+end
 term.setCursorPos(1,1)
 print("                                                   ")
 term.setCursorPos(2,1)
@@ -53,6 +74,7 @@ print("[Settings]")
 term.setCursorPos(9,1)
 if ofv4 == "1" then
 print("[Apps]")
+--print(backgroundno)
 end
 else
 term.setBackgroundColor( colors.white )
@@ -174,7 +196,12 @@ local event, button, X, Y = os.pullEventRaw()
        elseif X>=42 and X<=51 and Y==3 and button==1 then slc = 0
 		 term.setCursorPos(20,2)
        print("UI_BACKGROUND_WIP")
-       elseif X>=42 and X<=51 and Y==4 and button==1 then slc = 0
+       backgroundno = backgroundno+1
+	   if backgroundno >= 3 then
+	   backgroundno = backgroundno-3
+	   end
+	   drawdesk()
+	   elseif X>=42 and X<=51 and Y==4 and button==1 then slc = 0
 		 term.setCursorPos(20,2)
        print("UI_PASSWORD_CHANGE_WIP")
 	   fs.delete("/OS/Data/ProjectSecure/.UserPref/Pswd")
