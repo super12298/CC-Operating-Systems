@@ -141,6 +141,9 @@ end
 --Detects Rednet and turns it on("true") or off("false")
 --usage BFS.rd("true")
 function rd(quest)
+if nOS == COS[3] or nOS == COS[4] then
+
+else
 modemSide = getDeviceSide("modem")
 	if quest == "true" then
 		if (modemSide) then
@@ -149,6 +152,7 @@ modemSide = getDeviceSide("modem")
 	else
 	rednet.close(modemSide)
 	end
+end
 end
 
 --This function draws a image
