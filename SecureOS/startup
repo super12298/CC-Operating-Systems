@@ -87,7 +87,12 @@ rn = rn-1
 rn2 = rn2+1
 end
 end
-
+if not fs.exists("/OS/Data/Backgrounds/ClassicCCOS") then
+print("OK!")
+sleep(.5)
+BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/Backgrounds/ClassicCCOS", "/OS/Data/Backgrounds/ClassicCCOS")
+--BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/Backgrounds/Default", "/OS/Data/Backgrounds/Default")
+end
 
 listcdwn()
 BFS.md("/OS/Data/ProjectSecure/.UserPref")
