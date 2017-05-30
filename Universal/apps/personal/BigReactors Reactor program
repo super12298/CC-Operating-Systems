@@ -1,0 +1,91 @@
+  local reactor1 = peripheral.wrap("BigReactors-Reactor_0")
+  local lvbatt1 = peripheral.wrap("IE:lvCapacitor_0")
+  local lvbatt2 = peripheral.wrap("IE:lvCapacitor_1")
+  local mon = peripheral.wrap("monitor_2")
+  local moni = peripheral.wrap("monitor_1")
+  maxrf = 10000000
+  storerf = maxrf/40 
+  function clear()
+  sleep(.2)
+  moni.clear()
+  mon.clear()
+    term.clear()
+end
+clear()
+  reactor1.setActive(false)
+  shell.run("dj")
+  sleep(1)
+  function writetext(variable1, variable2, x, y)
+  moni.setTextColor(colors.lime)
+  mon.setTextColor(colors.lime)
+  moni.setCursorPos(x,y)
+  mon.setCursorPos(x,y)
+  moni.write(variable1)
+  mon.write(variable1)
+  term.setCursorPos(x,y)
+  term.write(variable1)
+  y = y+1
+  moni.setCursorPos(x,y)
+  mon.setCursorPos(x,y)
+  moni.setTextColor(colors.blue)
+  mon.setTextColor(colors.blue)
+  moni.write(variable2)
+  mon.write(variable2)
+  term.setCursorPos(x,y)
+  term.write(variable2)
+  end
+  function writetext2(variable1, variable2, x, y)
+  moni.setTextColor(colors.lime)
+  mon.setTextColor(colors.lime)
+  moni.setCursorPos(x,y)
+  mon.setCursorPos(x,y)
+  term.setCursorPos(x,y)
+  moni.write(variable1)
+  mon.write(variable1)
+    term.write(variable1)
+  moni.setTextColor(colors.blue)
+  mon.setTextColor(colors.blue)
+  moni.write(variable2)
+  mon.write(variable2)
+    term.write(variable2)
+  end
+  
+while true do
+  local percentage = math.floor(reactor1.getEnergyStored()) * 100 / storerf
+writetext2("[Reactor]:", "0", 1, 1)
+writetext2("Active:", reactor1.getActive(), 1, 2)
+writetext("RF Stored:"..percentage.."%",math.floor(reactor1.getEnergyStored()).."/"..storerf, 1, 3)
+writetext2("Rod Level:",reactor1.getControlRodLevel(0), 1, 5)
+writetext2("RF/T:", math.floor(reactor1.getEnergyProducedLastTick()), 1, 6)
+writetext2("Casing Temp:", math.floor(reactor1.getCasingTemperature()), 1, 7)
+writetext2("Fuel Temp:", math.floor(reactor1.getFuelTemperature()), 1, 8)
+writetext2("Fuel Amount:", reactor1.getFuelAmount(), 1, 9)
+if math.floor(reactor1.getEnergyStored()) < storerf then
+reactor1.setActive(true)
+else
+reactor1.setActive(false)
+end
+if math.floor(reactor1.getEnergyStored()) < 5000 then
+reactor1.setAllControlRodLevels(0)
+elseif math.floor(reactor1.getEnergyStored()) < 10000 then
+reactor1.setAllControlRodLevels(30)
+elseif math.floor(reactor1.getEnergyStored()) < 30000 then
+reactor1.setAllControlRodLevels(50)
+elseif math.floor(reactor1.getEnergyStored()) < 60000 then
+reactor1.setAllControlRodLevels(80)
+elseif math.floor(reactor1.getEnergyStored()) < 73000 then
+reactor1.setAllControlRodLevels(85)
+elseif math.floor(reactor1.getEnergyStored()) < 75000 then
+reactor1.setAllControlRodLevels(90)
+elseif math.floor(reactor1.getEnergyStored()) > 100000 then
+reactor1.setAllControlRodLevels(95)
+elseif math.floor(reactor1.getEnergyStored()) > 100000 then
+reactor1.setAllControlRodLevels(95)
+end
+writetext2("[Lava Generator]","", 1, 16)
+writetext2(lvbatt2.getEnergyStored(), "/"..lvbatt2.getMaxEnergyStored().." RF", 1, 17)
+writetext2("[BATTERY]","", 1, 18)
+writetext2(lvbatt1.getEnergyStored(), "/"..lvbatt1.getMaxEnergyStored().." RF", 1, 19)
+clear()
+
+end
