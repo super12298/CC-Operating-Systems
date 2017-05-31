@@ -358,15 +358,15 @@ end
 --reads a file or website and turns it into a table
 --Usage BFS.rwf("File location or website url", "file") <-- put the word |"file" or "f"| or |"website" or "w"|
 function rwf(fw, worf)
-if worf = "file" worf = "f" then
+if worf == "website" or worf == "w" then
 readfw = http.get(fw)
-elseif worf = "website" or worf = "w" then
-local h = fs.open( fw, "r" )
+elseif worf == "file" or worf == "f" then
+readfw = fs.open( fw, "r" )
 else
 error("")
 end
 
-local lines = {}
+lines = {}
 for line in readfw.readLine do
     lines[#lines+1] = line
 end
