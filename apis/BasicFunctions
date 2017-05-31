@@ -382,5 +382,5 @@ end
 --Downloads using a line from file or website(1). The second number is the location(2).
 --Usage BFS.printline(#, #)
 function downloadurl(n, l)
-usage BFS.df(lines[n], lines[l])
+df(lines[n], lines[l])
 end
