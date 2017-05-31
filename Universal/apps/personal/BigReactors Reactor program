@@ -51,6 +51,7 @@ clear()
   end
   
 while true do
+if peripheral.isPresent("BigReactors-Reactor_0")then
   local percentage = math.floor(reactor1.getEnergyStored()) * 100 / storerf
 writetext2("[Reactor]:", "0", 1, 1)
 writetext2("Active:", reactor1.getActive(), 1, 2)
@@ -82,10 +83,14 @@ reactor1.setAllControlRodLevels(95)
 elseif math.floor(reactor1.getEnergyStored()) > 100000 then
 reactor1.setAllControlRodLevels(95)
 end
+end
+if peripheral.isPresent("IE:lvCapacitor_1")then
 writetext2("[Lava Generator]","", 1, 16)
 writetext2(lvbatt2.getEnergyStored(), "/"..lvbatt2.getMaxEnergyStored().." RF", 1, 17)
+end
+if peripheral.isPresent("IE:lvCapacitor_1")then
 writetext2("[BATTERY]","", 1, 18)
 writetext2(lvbatt1.getEnergyStored(), "/"..lvbatt1.getMaxEnergyStored().." RF", 1, 19)
+end
 clear()
-
 end
