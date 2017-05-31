@@ -3,13 +3,14 @@
   local lvbatt2 = peripheral.wrap("IE:lvCapacitor_1")
   local mon = peripheral.wrap("monitor_2")
   local moni = peripheral.wrap("monitor_1")
+  local redst = "left"
   maxrf = 10000000
   storerf = maxrf/40 
   function clear()
   sleep(.2)
   moni.clear()
   mon.clear()
-    term.clear()
+  term.clear()
 end
 clear()
   reactor1.setActive(false)
@@ -51,6 +52,12 @@ clear()
   end
   
 while true do
+if redstone.getInput(redst) then
+t = true
+reactor1.setActive(true)
+else
+t = false
+end
 if peripheral.isPresent("BigReactors-Reactor_0")then
   local percentage = math.floor(reactor1.getEnergyStored()) * 100 / storerf
 writetext2("[Reactor]:", "0", 1, 1)
@@ -61,10 +68,12 @@ writetext2("RF/T:", math.floor(reactor1.getEnergyProducedLastTick()), 1, 6)
 writetext2("Casing Temp:", math.floor(reactor1.getCasingTemperature()), 1, 7)
 writetext2("Fuel Temp:", math.floor(reactor1.getFuelTemperature()), 1, 8)
 writetext2("Fuel Amount:", reactor1.getFuelAmount(), 1, 9)
+if t == false then
 if math.floor(reactor1.getEnergyStored()) < storerf then
 reactor1.setActive(true)
 else
 reactor1.setActive(false)
+end
 end
 if math.floor(reactor1.getEnergyStored()) < 5000 then
 reactor1.setAllControlRodLevels(0)
@@ -88,7 +97,7 @@ if peripheral.isPresent("IE:lvCapacitor_1")then
 writetext2("[Lava Generator]","", 1, 16)
 writetext2(lvbatt2.getEnergyStored(), "/"..lvbatt2.getMaxEnergyStored().." RF", 1, 17)
 end
-if peripheral.isPresent("IE:lvCapacitor_1")then
+if peripheral.isPresent("IE:lvCapacitor_0")then
 writetext2("[BATTERY]","", 1, 18)
 writetext2(lvbatt1.getEnergyStored(), "/"..lvbatt1.getMaxEnergyStored().." RF", 1, 19)
 end
