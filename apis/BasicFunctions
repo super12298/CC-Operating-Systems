@@ -365,6 +365,7 @@ readfw = fs.open( fw, "r" )
 else
 error("")
 end
+
 lines = {}
 for line in readfw.readLine do
     lines[#lines+1] = line
@@ -372,6 +373,14 @@ end
 readfw.close()
 end
 
+--prints a line from file or website
+--Usage BFS.printline(#)
 function printline(n)
 print(lines[n])
+end
+
+--Downloads using a line from file or website(1). The second number is the location(2).
+--Usage BFS.printline(#, #)
+function downloadurl(n, l)
+usage BFS.df(lines[n], lines[l])
 end
