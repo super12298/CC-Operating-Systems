@@ -4,22 +4,26 @@ author
 link_1 [official]
 link_2 [backup/alt]
 discription
+/OS/Data/Apps/File_Name
 -------------
 Ice-Browser
 Cutecurtain
 https://pastebin.com/raw/hUN4PGkv
 https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Programs/Ice-Browser
 This is a file-browsing program I call Ice-Browser. It makes it easy to manage all of your files and directories in your computer.The program uses a Graphical User Interface that is very easy to get the hang of quite quickly.
+/OS/Data/Apps/Ice-Browser
 -------------
 LuaIDE
 GravityScore
 https://pastebin.com/raw/vyAZc6tJ
 https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/ThirdPartyBackups/Programs/LuaIDE
 LuaIDE, an in game Integrated Development Environment. Fully featured with things like live errors, code highlighting, go to line function, automatic saving, error aid, running with and without arguments, and a functional clipboard.
+/OS/Data/Apps/LuaIDE
 -------------
 FlappyPixel
 Creator
 https://pastebin.com/raw/4kqJKA42
 nul
 FlappyPixel is, as you may have guessed, an implementation for ComputerCraft of the popuplar FlappyBird game. 
+/OS/Data/Apps/FlappyPixel
 -------------
