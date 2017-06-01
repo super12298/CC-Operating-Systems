@@ -1,9 +1,12 @@
 osname ="Project Secure"
-
+page = 0
+selectm = 0
+----------------------------
 function randomColor()
 local items = {colors.orange,colors.blue,colors.gray,colors.green,colors.red,colors.pink}
 Color = items[math.random(1, #items)]
 end
+
 function pnt_menu()
 term.clear()
 if term.isColor() then
@@ -14,11 +17,53 @@ else
 --stuff for black and white
 end
 end
+
 function loadscrn()
 print("Splash...OK")
 term.clear()
 BFS.dg("/OS/Data/Store/images/splash",.2)
 BFS.tpla(11,17,"["..osname.."'s Appstore]")
 end
+
+function drawoptions()
+term.clear()
+BFS.tpla(5,18,"[Back]")
+BFS.tpla(42,18,"[Next]")
+end
+----------------------------
+
 pnt_menu()
 loadscrn()
+sleep(0)
+drawoptions()
+
+while true do
+print(page)
+local event, button, X, Y = os.pullEventRaw()
+  if page == 0 then
+    if event == "mouse_click" then
+      if X >=2 and X <=8 and Y==1 and button ==1 then
+      page = 1
+      elseif X >=42 and X <=51 and Y==1 and button ==1 then
+		page = 2
+		elseif X >=9 and X <=15 and Y==1 and button ==1 then
+			if ofv4 == "1" then
+			page = 3
+			end
+      else
+      drawoptions()
+      end
+    end
+	end
+--[[	if page > 0 then
+	break
+	end
+	--]]
+	   if event == "mouse_click" then
+     if X >=2 and X <=9 and button == 1 and Y==2 then slc = 1
+       os.reboot()   
+       end
+       else
+       page = 0
+     end
+     end
