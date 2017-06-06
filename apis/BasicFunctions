@@ -3,39 +3,6 @@
 --Config (nul or blank == off and 1 == on)
 debug = nul
 -----------------------------------
---All Functions
------------------------------------
---Reboot with a countdown!
---Hint default is (1,18)
---usage BFS.sdc(x,y)
-
---Downloads Files from any source
---usage BFS.df("url", "path")
-
---Makes directory
---usage BFS.md("path")
-
---Detects Rednet and turns it on("true") or off("false")
---usage BFS.rd("true")
-
---This function draws a image
---usage BFS.dg("path", sleeptimeinseconds)
-
---This function prints the content of a page
---usage BFS.getlog("path")
-
---OS function that updates the system
---Usage BFS.verc("versionpath", "versionurl", "updatelocation", "updateurl")
-
---Disables or Enables the disk startup.
---usage BFS.DiskS("false") or BFS.DiskS("true")
-
---[Advance] Downloads Files from any source
---usage BFS.dfa("url", "backupurl", "path")
-
---Displays the computer label and id
---Usage BFS.dply(5,8)
------------------------------------
 local nTime = os.time()
 local nDay = os.day()
 local nID = os.getComputerID()
@@ -383,4 +350,86 @@ end
 --Usage BFS.printline(#, #)
 function downloadurl(n, l)
 df(lines[n], lines[l])
+end
+
+local function enc(str, key)
+	if not key then return false end
+	local f = ""
+	local kb = {}
+	for i = 1, #key do
+		kb[i] = string.byte(key:sub(i,i)) - 31
+	end
+	local c = 1
+	for i = 1, #str do
+		local t1 = string.byte(str:sub(i,i))
+		if t1 == 10 then
+			f = f .. string.char(10)
+		else
+			local t2 = t1 + kb[c]
+			if t2 > 126 then
+				local t3 = t2 - 126
+				t2 = 31 + t3
+			end
+		f = f .. string.char(t2)
+		end
+		c = c + 1
+		if c > #key then
+			c = 1
+		end
+	end
+	return f
+end
+
+local function dec(str, key)
+	if not key then return false end
+	local f = ""
+	local kb = {}
+	for i = 1, #key do
+		kb[i] = string.byte(key:sub(i,i)) - 31
+	end
+	local c = 1
+	for i = 1, #str do
+		local t2 = string.byte(str:sub(i,i)) - 31
+		if t2 == -21 then
+			f = f .. string.char(10)
+		else
+			local t3 = t2 - kb[c] + 31
+			if t3 < 32 then
+				t3 = t3 + 126 - 31
+			end
+			if t3 < 32 then return false, t3 end
+			if t3 > 126 then return false, t3 end
+			f = f .. string.char(t3)
+		end
+		c = c + 1
+		if c > #key then
+			c = 1
+		end
+	end
+	return f
+end
+
+--encrypts a word using a password
+function encrypt(str, key)
+	if not key then return false end
+	if #key < 3 then return false end
+	local f = str
+	key = key .. key .. "#me1"
+	for i = 0, #key - 1 do
+		f = enc(f, key:sub(i,i + 1))
+	end
+	f = enc(f, key:sub(1,2) .. key:sub(#key - 1, #key) .. enc(key, key .. key))
+	return f
+end
+--decrypts a word using a password
+function decrypt(str, key)
+	if not key then return false end
+	if #key < 3 then return false end
+	local f = str
+	key = key .. key .. "#me1"
+	for i = 0, #key - 1 do
+		f = dec(f, key:sub(i,i + 1))
+	end
+	f = dec(f, key:sub(1,2) .. key:sub(#key - 1, #key) .. enc(key, key .. key))
+	return f
 end
