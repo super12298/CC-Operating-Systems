@@ -1,8 +1,7 @@
 BFS.setl(identification)
 w, h = term.getSize()
 slc = 0
-tBarC = 8
-tBartC = 1
+deskmode = 0
 backgroundno = 0
 colorno = 0
 local redid = fs.open("/OS/Data/ProjectSecure/.UserPref/identification", "r")
@@ -144,8 +143,42 @@ term.setCursorPos(9,4)
 print("  All Apps  ")
 end
  
+function drawdesk2()
+if term.isColor() then
+term.clear()
+runbackground()
+term.setBackgroundColor( colors.gray )
+term.setTextColor( colors.white )
+term.setCursorPos(1,1)
+print("                                                   ")
+term.setCursorPos(2,1)
+print("[Page1]")
+term.setCursorPos(42,1)
+print("[Settings]")
+term.setCursorPos(9,1)
+print("[Page2]")
+end
+end
+
+function drawsettings2()
+term.setTextColor(256)
+term.setBackgroundColor(128)
+term.setCursorPos(42,2)
+print(" UI Color ")
+term.setCursorPos(42,3)
+print("Background")
+term.setCursorPos(42,4)
+print(" --Back-- ")
+end
+ 
+if deskmode == 0 then
 drawdesk()
+elseif deskmode == 1 then
+drawdesk2()
+end
+ 
 while true do
+if deskmode == 0 then
 local event, button, X, Y = os.pullEventRaw()
   if slc == 0 then
     if event == "mouse_click" then
@@ -257,5 +290,109 @@ local event, button, X, Y = os.pullEventRaw()
        drawdesk()
      end
      end
+  end
+  end
+  
+  
+if deskmode == 1 then
+local event, button, X, Y = os.pullEventRaw()
+  if slc == 0 then
+    if event == "mouse_click" then
+      if X >=2 and X <=8 and Y==1 and button ==1 then
+      drawmenu()
+      slc = 1
+      elseif X >=42 and X <=51 and Y==1 and button ==1 then
+      drawsettings2()
+		slc = 2
+		elseif X >=9 and X <=15 and Y==1 and button ==1 then
+			if ofv4 == "1" then
+			drawapps()
+			slc = 3
+			end
+      else
+      drawdesk2()
+      end
+    end
+   elseif slc == 1 then
+   if event == "mouse_click" then
+     if X >=2 and X <=9 and button == 1 and Y==2 then slc = 0
+       os.shutdown()
+       elseif X>=2 and X<=9 and Y==3 and button==1 then slc = 0
+       os.reboot()
+       elseif X>=1 and X<=11 and Y==4 and button==1 then slc = 0
+		 if term.isColor() then
+		 term.setBackgroundColor( colors.black )
+		 term.setTextColor( colors.green )
+		 end
+       term.clear()
+       term.setCursorPos(1,1)
+       if debug=="1" then
+		 BFS.chlog("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/apf%20text","slow")
+		 else
+		 print("[Change Log]:")
+		 BFS.chlog("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS/change%20log","slow")      
+       end
+       else
+       slc = 0
+       drawdesk2()
+     end
+     end
+   elseif slc == 2 then
+   if event == "mouse_click" then
+     if X >=42 and X <=51 and button == 1 and Y==2 then slc = 0
+	   term.setCursorPos(20,2)
+       print("UI_COLOR_WIP")
+	   colorno = colorno+1
+	   if colorno >= 3 then
+	   colorno = colorno-3
+	   end
+	   drawdesk2()
+       elseif X>=42 and X<=51 and Y==3 and button==1 then slc = 0
+	   term.setCursorPos(20,2)
+       print("UI_BACKGROUND_WIP")
+       backgroundno = backgroundno+1
+	   if backgroundno >= 3 then
+	   backgroundno = backgroundno-3
+	   end
+	   drawdesk2()
+	   elseif X>=42 and X<=51 and Y==4 and button==1 then slc = 0
+	   deskmode = 0
+       elseif X>=42 and X<=51 and Y==5 and button==1 then slc = 0
+	   
+       elseif X>=42 and X<=51 and Y==7 and button==1 then slc = 0
+	   
+       else
+       slc = 0
+       drawdesk2()
+     end
+     end
+     elseif slc == 3 then
+     if event == "mouse_click" then
+       if X >=9 and X <=20 and button == 1 and Y==2 then slc = 0
+		 term.setCursorPos(20,2)       
+       print("  Load_Appstore  ")
+	   if not fs.exists( "/OS/Data/Store/Launch" ) then
+	   print("/OS/Data/Store/Launch...updated")
+	   BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/Store", "/OS/Data/Store/Launch")
+	   sleep(.3)
+	   end
+	   if not fs.exists( "/OS/Data/Store/images/splash" ) then
+	   print("/OS/Data/Store/images/splash...updated")
+	   BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/Universal/apps/store/images/splash%20transparent", "/OS/Data/Store/images/splash")
+	   sleep(.3)
+	   end
+       os.run({},"/OS/Data/Store/Launch")
+       elseif X >=9 and X <=20 and Y==3 and button==1 then slc = 0
+		 term.setCursorPos(20,3)
+       print("  Load_File_Manager")
+       elseif X >=9 and X <=20 and Y==4 and button==1 then slc = 0
+		 term.setCursorPos(20,4)
+       print("  Load_All_Apps  ")
+       else
+       slc = 0
+       drawdesk2()
+     end
+     end
+  end
   end
 end
