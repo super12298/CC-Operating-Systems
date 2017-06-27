@@ -149,6 +149,8 @@ term.clear()
 runbackground()
 term.setBackgroundColor( colors.gray )
 term.setTextColor( colors.white )
+term.setCursorPos(1,20)
+print("                                                   ")
 term.setCursorPos(1,1)
 print("                                                   ")
 term.setCursorPos(2,1)
@@ -169,6 +171,25 @@ term.setCursorPos(42,3)
 print("Background")
 term.setCursorPos(42,4)
 print(" --Back-- ")
+end
+
+function drawapppage1()
+
+end
+function drawapppage2()
+
+end
+
+function drawblankmenu()
+term.setTextColor(128)
+term.setBackgroundColor(256)
+lne = 1
+for r = 2,18 do
+for rs = 1,w do
+term.setCursorPos(rs,r)
+term.write(" ")
+end
+end
 end
  
 if deskmode == 0 then
@@ -301,16 +322,16 @@ local event, button, X, Y = os.pullEventRaw()
   if slc == 0 then
     if event == "mouse_click" then
       if X >=2 and X <=8 and Y==1 and button ==1 then
-      drawmenu()
+       drawblankmenu()
+	   drawapppage1()
       slc = 1
       elseif X >=42 and X <=51 and Y==1 and button ==1 then
       drawsettings2()
 		slc = 2
 		elseif X >=9 and X <=15 and Y==1 and button ==1 then
-			if ofv4 == "1" then
-			drawapps()
-			slc = 3
-			end
+       drawblankmenu()
+	   drawapppage2()
+			slc = 3	
       else
       drawdesk2()
       end
