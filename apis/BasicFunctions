@@ -440,21 +440,21 @@ end
 
 --turns string into individual characters
 --Usage BFS.chars(str)
-    function chars(str)
-        strc = {}
-        for i = 1, #str do
-            table.insert(strc, string.sub(str, i, i))
-        end
-        return strc
-    end
+function chars(str)
+    strc = {}
+		for i = 1, #str do
+		table.insert(strc, string.sub(str, i, i))
+		end
+    return strc
+end
 
-	function testchars(string)
+function testchars(string)
 	chars(string)
 	for i = 1, #str do
-	if strc[i] == nil then
+		if strc[i] == nil then
 	
-	else
-	print(strc[i])
+		else
+		print(strc[i])
+		end
 	end
-	end
-	end
+end
