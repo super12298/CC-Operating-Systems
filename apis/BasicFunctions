@@ -354,7 +354,7 @@ end
 function downloadurl(n, l)
 df(lines[n], lines[l])
 end
-
+------------------------------------------------------------------------------------
 local function enc(str, key)
 	if not key then return false end
 	local f = ""
@@ -436,3 +436,25 @@ function decrypt(str, key)
 	f = dec(f, key:sub(1,2) .. key:sub(#key - 1, #key) .. enc(key, key .. key))
 	return f
 end
+--------------------------------------------------------------------------------------
+
+--turns string into individual characters
+--Usage BFS.chars(str)
+    function chars(str)
+        strc = {}
+        for i = 1, #str do
+            table.insert(strc, string.sub(str, i, i))
+        end
+        return strc
+    end
+
+	function testchars(string)
+	chars(string)
+	for i = 1, #str do
+	if strc[i] == nil then
+	
+	else
+	print(strc[i])
+	end
+	end
+	end
