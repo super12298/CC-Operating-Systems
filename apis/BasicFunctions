@@ -328,6 +328,7 @@ end
 --reads a file or website and turns it into a table
 --Usage BFS.rwf("File location or website url", "file") <-- put the word |"file" or "f"| or |"website" or "w"|
 function rwf(fw, worf)
+totallines = 0
 if worf == "website" or worf == "w" then
 readfw = http.get(fw)
 elseif worf == "file" or worf == "f" then
@@ -338,6 +339,7 @@ end
 
 lines = {}
 for line in readfw.readLine do
+totallines = totallines+1
     lines[#lines+1] = line
 end
 readfw.close()
@@ -346,6 +348,7 @@ end
 --prints a line from file or website
 --Usage BFS.printline(#)
 function printline(n)
+print("[TOTAL LINES]:"..totallines)
 print(lines[n])
 end
 
@@ -458,3 +461,56 @@ function testchars(string)
 		end
 	end
 end
+
+function drawchars(string)
+chars(string)
+for i = 1, x do
+if strc[i] == nil then
+else
+if strc[i] == "0" then
+term.setBackgroundColour(1)
+elseif strc[i] == "1" then
+term.setBackgroundColour(2)
+elseif strc[i] == "2" then
+term.setBackgroundColour(4)
+elseif strc[i] == "3" then
+term.setBackgroundColour(8)
+elseif strc[i] == "4" then
+term.setBackgroundColour(16)
+elseif strc[i] == "5" then
+term.setBackgroundColour(32)
+elseif strc[i] == "6" then
+term.setBackgroundColour(64)
+elseif strc[i] == "7" then
+term.setBackgroundColour(128)
+elseif strc[i] == "8" then
+term.setBackgroundColour(256)
+elseif strc[i] == "9" then
+term.setBackgroundColour(512)
+elseif strc[i] == "a" then
+term.setBackgroundColour(1024)
+elseif strc[i] == "b" then
+term.setBackgroundColour(2048)
+elseif strc[i] == "c" then
+term.setBackgroundColour(4096)
+elseif strc[i] == "d" then
+term.setBackgroundColour(8192)
+elseif strc[i] == "e" then
+term.setBackgroundColour(16384)
+elseif strc[i] == "f" then
+term.setBackgroundColour(32768)
+end
+term.write(" ")
+end
+end
+end
+
+function drawimg(weborfile,wof)
+BFS.rwf(weborfile,wof)
+for v = 1,totallines do
+term.setCursorPos(1,v)
+drawchars(lines[v])
+end
+end
+
+
