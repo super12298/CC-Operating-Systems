@@ -1,6 +1,7 @@
 term.setBackgroundColor( colors.gray )
 term.clear()
 term.setCursorPos(1,1)
+x,y = term.getSize()
 if not fs.exists( "/api/BFS" ) then
 shell.run("wget","https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/apis/BasicFunctions","/api/BFS")
 end
@@ -34,4 +35,5 @@ if fs.exists( "/disk/api/" ) and fs.isDir( "/disk/api/" ) then
         end
   end
 end
+BFS.DiskS(false)
 shell.run("/system/boot.lua")
