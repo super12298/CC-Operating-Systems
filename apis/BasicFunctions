@@ -466,6 +466,7 @@ function drawchars(string)
 chars(string)
 for i = 1, x do
 if strc[i] == nil then
+elseif strc[i] == " " then
 else
 if strc[i] == "0" then
 term.setBackgroundColour(1)
@@ -500,7 +501,11 @@ term.setBackgroundColour(16384)
 elseif strc[i] == "f" then
 term.setBackgroundColour(32768)
 end
+if strc[i] == nil then
+elseif strc[i] == " " then
+else
 term.write(" ")
+end
 end
 end
 end
@@ -513,4 +518,19 @@ drawchars(lines[v])
 end
 end
 
+function loadimages(number, filnam)
+z = 1
+for i=1,number do
+if filnam[i] == " " then
+sleep(.1)
+else
+term.setCursorPos(1,z)
+BFS.drawchars(filnam[i])
+z = z+1
+if z > y then 
+z = 1
+end
+end
+end
+end
 
