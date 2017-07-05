@@ -7,7 +7,6 @@ term.clear()
 term.setCursorPos(1,1)
 lnes = 19
 totallnes = lnes*8
-z = 0
 
 function bootfiles()
 BFS.loadimages(totallnes, bootlogo)
@@ -41,12 +40,16 @@ end
 
 local ok,val = pcall(bootfiles)
 if not ok then
-  os.reboot()
+BFS.loadimages(lnes, errorlogo)
+  term.setCursorPos(1,1)
   print("[Error]:",val)
   sleep(5)
+    os.reboot()
 end
 local ok,val = pcall(setupandlogin)
 if not ok then
+BFS.loadimages(lnes, errorlogo)
+term.setCursorPos(1,1)
   print("[Error]:",val)
   sleep(5)
   os.reboot()
