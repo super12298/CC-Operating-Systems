@@ -1,0 +1,72 @@
+term.setBackgroundColor( colors.gray )
+term.clear()
+term.setCursorPos(1,1)
+x,y = term.getSize()
+if not fs.exists( "/api/BFS" ) then
+shell.run("wget","https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/apis/BasicFunctions","/api/BFS")
+end
+function loadapi()
+if fs.exists( "/api/" ) and fs.isDir( "/api/" ) then
+term.setCursorPos(1,1)
+sleep(.3)
+  local tFiles = fs.list( "/api/" )
+  table.sort( tFiles )
+  for n, sFile in ipairs( tFiles ) do
+        if string.sub( sFile, 1, 1 ) ~= "." then
+          local sPath = "/api/"..sFile
+          if not fs.isDir( sPath ) then
+                os.loadAPI( sPath )
+                print("[API]:"..sPath)
+                sleep(.3)
+          end
+        end
+  end
+end
+if fs.exists( "/disk/api/" ) and fs.isDir( "/disk/api/" ) then
+   zFiles = fs.list( "/disk/api/" )
+  table.sort( zFiles )
+  for n, pFiles in ipairs( zFiles ) do
+        if string.sub( pFiles, 1, 1 ) ~= "." then
+          local sPath = "/disk/api/"..pFiles
+          if not fs.isDir( sPath ) then
+                os.loadAPI( sPath )
+                print("[API][Disk]:"..sPath)
+                sleep(.3)
+          end
+        end
+  end
+end
+end
+
+function safemode(OwO)
+   timer = os.startTimer(1)
+   repeat
+   term.clear()
+   term.setCursorPos(1,1)
+   print("Press 'x' to enter safemode.")
+   local id, p1 = os.pullEvent()
+   if id == "key" and p1 == 45 then
+   term.clear()
+   os.loadAPI("api/BFS")
+   term.setCursorPos(1,1)
+   print("[SafeMode]")
+   sleep(1)
+   BFS.DiskS(false)
+   shell.run("/system/boot.lua")
+   elseif id == "timer" and p1 == timer then
+   OwO = OwO-1
+   timer = os.startTimer(1)
+   end
+  until OwO < 0
+end
+
+safemode(0)
+term.clear()
+loadapi()
+sleep(.5)
+term.clear()
+BFS.DiskS(false)
+term.setCursorPos(1,1)
+print("[Booting]")
+sleep(.5)
+shell.run("/system/boot.lua")
