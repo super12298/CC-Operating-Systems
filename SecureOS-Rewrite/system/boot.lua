@@ -43,7 +43,7 @@ if not ok then
 BFS.loadimages(lnes, errorlogo)
   term.setCursorPos(1,1)
   print("[Error]:",val)
-  sleep(5)
+  sleep(10)
     os.reboot()
 end
 local ok,val = pcall(setupandlogin)
@@ -51,6 +51,6 @@ if not ok then
 BFS.loadimages(lnes, errorlogo)
 term.setCursorPos(1,1)
   print("[Error]:",val)
-  sleep(5)
+  sleep(10)
   os.reboot()
 end
