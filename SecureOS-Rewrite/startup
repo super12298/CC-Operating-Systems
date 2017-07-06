@@ -38,14 +38,23 @@ if fs.exists( "/disk/api/" ) and fs.isDir( "/disk/api/" ) then
 end
 end
 
+function reset()
+print("Lets go to bowling!")
+sleep(5)
+	if fs.exists( "/api/" ) then
+	fs.delete( "/api/" )
+	end
+	os.reboot()
+end
+
 function safemode(OwO)
    timer = os.startTimer(1)
    repeat
    term.clear()
    term.setCursorPos(1,1)
-   print("Press 'x' to enter safemode.")
+   print("Press 'Enter' to enter safemode.")
    local id, p1 = os.pullEvent()
-   if id == "key" and p1 == 45 then
+   if id == "key" and p1 == 28 then
    term.clear()
    os.loadAPI("api/BFS")
    term.setCursorPos(1,1)
@@ -53,6 +62,8 @@ function safemode(OwO)
    sleep(1)
    BFS.DiskS(false)
    shell.run("/system/boot.lua")
+   elseif id == "key" and p1 == 41 then
+   reset()
    elseif id == "timer" and p1 == timer then
    OwO = OwO-1
    timer = os.startTimer(1)
