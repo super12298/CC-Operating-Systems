@@ -348,8 +348,7 @@ end
 --prints a line from file or website
 --Usage BFS.printline(#)
 function printline(n)
-print("[TOTAL LINES]:"..totallines)
-print(lines[n])
+return lines[n]
 end
 
 --Downloads using a line from file or website(1). The second number is the location(2).
@@ -518,7 +517,7 @@ drawchars(lines[v])
 end
 end
 
-function loadimages(number, filnam)
+function loadimages(number, filnam, Dos)
 z = 1
 for i=1,number do
 if filnam[i] == " " then
@@ -526,6 +525,9 @@ sleep(.1)
 else
 term.setCursorPos(1,z)
 BFS.drawchars(filnam[i])
+if Dos == true then
+sleep(0)
+end
 z = z+1
 if z > y then 
 z = 1
@@ -534,3 +536,18 @@ end
 end
 end
 
+function udidv2(path)
+	if not fs.exists(path) then
+	local f = io.open(path, "w")
+		for i = 1, 40 do
+		local items = {"a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","0","1","2","3","4","5","6","7","8","9","@","#","$","%","&","*"}
+		f:write(items[math.random(1, #items)])
+		end
+		f:write("\nPC-")
+	for i = 1, math.random(0, 15) do
+	local items2 = {"1","2","3","4","5","6","7","8","9","0"}
+		f:write(items2[math.random(1, #items2)])
+	end
+f:close()
+end
+end
