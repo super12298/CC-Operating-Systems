@@ -1,37 +1,39 @@
-
+BFS.udidv2("system/store/udid")
+BFS.rwf("system/store/udid", "f")
+BFS.setl(BFS.printline(2))
 shell.run("/system/images")
 shell.run("/system/config.txt")
 print("[Disclaimer]: This is a beta software!")
 sleep(.5)
 term.clear()
 term.setCursorPos(1,1)
-lnes = 19
-totallnes = lnes*8
 
 function bootfiles()
-BFS.loadimages(totallnes, bootlogo)
+if dvmd == 1 then
+else
+BFS.loadimages(totallnes, bootlogo, Dos)
+end
 end
 
 function setupandlogin()
 term.clear()
 z = 1
-BFS.loadimages(lnes, loginlogo)
+BFS.loadimages(lnes, loginlogo, Dos)
 term.setCursorPos(15,14)
-print(readusern)
+print(name)
 BFS.dply(1,1)
-BFS.tpla(1,2,"[Project Secure] Version:")
-BFS.readfile(26,2,"system/version.txt")
-if debug == "1" then
-write(" [DEV EDITION]  ")
+if dvmd == 1 then
+BFS.tpla(1,2,"[Project Secure] Sys: ")
+term.setCursorPos(35,1)
+print("Space;",fs.getFreeSpace("/"))
+print("["..totallnes.." Dev ")
+else
+BFS.tpla(1,2,"[Project Secure] Ver: ")
 end
+BFS.readfile(23,2,"system/version.txt")
 term.setCursorPos(15,16)
-usrpwd = read("*")
-	if usrpwd == readuserpwd then
-	if not fs.exists( "temp" ) then
-	File = fs.open("temp", "w")
-	File.write(" ")
-	File.close()
-	end
+input = read("*")
+	if input == filematch then
 	shell.run("/system/desk.lua")
 	else
 	setupandlogin()
