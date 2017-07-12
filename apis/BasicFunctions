@@ -415,7 +415,7 @@ local function dec(str, key)
 end
 
 --encrypts a word using a password
-function encrypt(str, key)
+function encr(str, key)
 	if not key then return false end
 	if #key < 3 then return false end
 	local f = str
@@ -427,7 +427,7 @@ function encrypt(str, key)
 	return f
 end
 --decrypts a word using a password
-function decrypt(str, key)
+function decr(str, key)
 	if not key then return false end
 	if #key < 3 then return false end
 	local f = str
