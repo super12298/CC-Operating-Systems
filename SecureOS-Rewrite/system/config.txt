@@ -1,5 +1,5 @@
 use_online = false
 Dos = false
-dvmd = 1
+dvmd = 0
 lnes = 19 --default is 19
 totallnes = lnes*8  --default is lnes*8

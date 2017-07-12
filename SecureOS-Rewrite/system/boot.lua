@@ -1,6 +1,7 @@
 BFS.udidv2("system/store/udid")
 BFS.rwf("system/store/udid", "f")
 BFS.setl(BFS.printline(2))
+uname = BFS.printline(1)
 shell.run("/system/images")
 shell.run("/system/config.txt")
 print("[Disclaimer]: This is a beta software!")
@@ -16,6 +17,17 @@ end
 end
 
 function setupandlogin()
+if fs.exists("/system/usr.src") then
+BFS.rwf("/system/usr.src", "f")
+filematch = BFS.decr(BFS.printline(2), uname)
+name = BFS.printline(1)
+else
+if fs.exists("/system/setup") then
+shell.run("system/setup")
+else
+BFS.df("url", "system/setup")
+end
+end
 term.clear()
 z = 1
 BFS.loadimages(lnes, loginlogo, Dos)
@@ -32,7 +44,7 @@ BFS.tpla(1,2,"[Project Secure] Ver: ")
 end
 BFS.readfile(23,2,"system/version.txt")
 term.setCursorPos(15,16)
-input = read("*")
+input = read()
 	if input == filematch then
 	shell.run("/system/desk.lua")
 	else
