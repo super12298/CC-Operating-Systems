@@ -12,7 +12,7 @@ term.setCursorPos(13,16)
 local input1 = read()
 fd = BFS.encr(input1, uname)
 term.setCursorPos(13,18)
-local input2 = read("#")
+local input2 = read()
 fc = BFS.encr(input2, uname)
 if not fs.exists("/system/usr.src") then
 f = io.open("/system/usr.src", "w")

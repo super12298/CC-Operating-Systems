@@ -18,7 +18,8 @@ else
 if fs.exists("/system/setup.lua") then
 shell.run("system/setup.lua")
 else
-BFS.df("url", "system/setup.lua")
+BFS.df("https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/SecureOS-Rewrite/system/setup.lua", "system/setup.lua")
+os.reboot()
 end
 end
 if dvmd == 1 then
