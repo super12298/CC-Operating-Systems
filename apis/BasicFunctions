@@ -416,6 +416,9 @@ end
 
 --encrypts a word using a password
 function encr(str, key)
+if str == nil or str == " " then
+return nLabel
+else
 	if not key then return false end
 	if #key < 3 then return false end
 	local f = str
@@ -426,8 +429,12 @@ function encr(str, key)
 	f = enc(f, key:sub(1,2) .. key:sub(#key - 1, #key) .. enc(key, key .. key))
 	return f
 end
+end
 --decrypts a word using a password
 function decr(str, key)
+if str == nil or str == " " then
+return nLabel
+else
 	if not key then return false end
 	if #key < 3 then return false end
 	local f = str
@@ -437,6 +444,7 @@ function decr(str, key)
 	end
 	f = dec(f, key:sub(1,2) .. key:sub(#key - 1, #key) .. enc(key, key .. key))
 	return f
+end
 end
 --------------------------------------------------------------------------------------
 
