@@ -1,1 +1,1 @@
-shell.run("shell")
+shell.run("worm")

@@ -10,6 +10,17 @@ term.clear()
 term.setCursorPos(1,1)
 
 function bootfiles()
+if fs.exists("/system/usr.src") then
+BFS.rwf("/system/usr.src", "f")
+filematch = BFS.decr(BFS.printline(2), uname)
+name = BFS.decr(BFS.printline(1), uname)
+else
+if fs.exists("/system/setup.lua") then
+shell.run("system/setup.lua")
+else
+BFS.df("url", "system/setup.lua")
+end
+end
 if dvmd == 1 then
 else
 BFS.loadimages(totallnes, bootlogo, Dos)
@@ -17,17 +28,6 @@ end
 end
 
 function setupandlogin()
-if fs.exists("/system/usr.src") then
-BFS.rwf("/system/usr.src", "f")
-filematch = BFS.decr(BFS.printline(2), uname)
-name = BFS.printline(1)
-else
-if fs.exists("/system/setup") then
-shell.run("system/setup")
-else
-BFS.df("url", "system/setup")
-end
-end
 term.clear()
 z = 1
 BFS.loadimages(lnes, loginlogo, Dos)
@@ -44,7 +44,7 @@ BFS.tpla(1,2,"[Project Secure] Ver: ")
 end
 BFS.readfile(23,2,"system/version.txt")
 term.setCursorPos(15,16)
-input = read()
+input = read("*")
 	if input == filematch then
 	shell.run("/system/desk.lua")
 	else
