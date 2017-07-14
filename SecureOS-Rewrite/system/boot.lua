@@ -9,6 +9,44 @@ sleep(.5)
 term.clear()
 term.setCursorPos(1,1)
 
+function runbackground()
+if Background_dlc == nil or Background_dlc == 0 and backgroundno >= 5 then
+backgroundno = 4
+end
+if backgroundno == nil then
+backgroundno = 0
+end
+term.setCursorPos(1,2)
+if backgroundno == 0 then
+term.setBackgroundColor( colors.blue )
+term.clear()
+end
+if backgroundno == 1 then
+term.setBackgroundColor( colors.red )
+term.clear()
+end
+if backgroundno == 2 then
+BFS.loadimages(lnes, classicbg)
+end
+if backgroundno == 3 then
+BFS.loadimages(lnes, bootlogo)
+end
+if backgroundno == 4 then
+BFS.loadimages(lnes, errorlogo)
+end
+if backgroundno == 100 and Background_dlc >= 1 then
+BFS.breakbg(classicbg, 19, 19)
+end
+if backgroundno == 101 and Background_dlc >= 1 then
+BFS.merge(errorlogo, 19, 10, 1)
+BFS.merge(bootlogo, 19, 19, 11)
+end
+if backgroundno == 102 and Background_dlc >= 1 then
+BFS.merge(bootlogo, 19, 10, 1)
+BFS.merge(errorlogo, 19, 19, 11)
+end
+end
+
 function bootfiles()
 if fs.exists("/system/usr.src") then
 BFS.rwf("/system/usr.src", "f")
