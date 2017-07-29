@@ -34,14 +34,14 @@ end
 if backgroundno == 4 then
 BFS.loadimages(lnes, errorlogo)
 end
-if backgroundno == 100 and Background_dlc >= 1 then
+if backgroundno == 99 then
 BFS.breakbg(classicbg, 19, 19)
 end
-if backgroundno == 101 and Background_dlc >= 1 then
+if backgroundno == 100 and Background_dlc >= 1 then
 BFS.merge(errorlogo, 19, 10, 1)
 BFS.merge(bootlogo, 19, 19, 11)
 end
-if backgroundno == 102 and Background_dlc >= 1 then
+if backgroundno == 101 and Background_dlc >= 1 then
 BFS.merge(bootlogo, 19, 10, 1)
 BFS.merge(errorlogo, 19, 19, 11)
 end
@@ -91,14 +91,23 @@ input = read("*")
 	end
 end
 
+if not term.isColor() then
+lnes = 0
+end
+
 local ok,val = pcall(bootfiles)
 if not ok then
 BFS.loadimages(lnes, errorlogo)
-  term.setCursorPos(1,1)
+term.setCursorPos(1,1)
+if string.match(val, "supported") then
+print("[Error]:","This computer is not yet supported.\nSorry for the inconvenience. (T_T)\n")
+else
   print("[Error]:",val)
-  sleep(10)
-    os.reboot()
 end
+sleep(9999999)
+os.reboot()
+end
+
 local ok,val = pcall(setupandlogin)
 if not ok then
 BFS.loadimages(lnes, errorlogo)
