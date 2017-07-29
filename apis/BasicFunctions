@@ -475,6 +475,7 @@ for i = 1, x do
 if strc[i] == nil then
 elseif strc[i] == " " then
 else
+if term.isColor() then
 if strc[i] == "0" then
 term.setBackgroundColour(1)
 elseif strc[i] == "1" then
@@ -508,6 +509,21 @@ term.setBackgroundColour(16384)
 elseif strc[i] == "f" then
 term.setBackgroundColour(32768)
 end
+else
+error("supported")
+--[[
+if strc[i] == "0" or strc[i] == "9" then
+term.setBackgroundColour(1)
+elseif strc[i] == "8" then
+term.setBackgroundColour(256)
+elseif strc[i] == "7" or strc[i] == "b"then
+term.setBackgroundColour(128)
+elseif strc[i] == "f" or strc[i] == "1" then
+term.setBackgroundColour(32768)
+end
+--]]
+end
+
 if strc[i] == nil then
 elseif strc[i] == " " then
 else
