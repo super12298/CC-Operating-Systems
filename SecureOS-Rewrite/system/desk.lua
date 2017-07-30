@@ -1,5 +1,5 @@
 Background_dlc = 0
-backgroundno = 2
+backgroundno = 3
 local ok,val = pcall(runbackground)
 if not ok then
 --BFS.loadimages(lnes, errorlogo)

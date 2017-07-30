@@ -2,6 +2,7 @@ term.setBackgroundColor( colors.gray )
 term.clear()
 term.setCursorPos(1,1)
 x,y = term.getSize()
+pi = 0
 if not fs.exists( "/api/BFS" ) then
 shell.run("wget","https://raw.githubusercontent.com/super12298/CC-Operating-Systems/master/apis/BasicFunctions","/api/BFS")
 end
@@ -52,25 +53,52 @@ function safemode(OwO)
    repeat
    term.clear()
    term.setCursorPos(1,1)
-   print("Press 'Enter' to enter safemode.")
+   print("Comp_"..OwO)
+      term.setCursorPos(6,1)
+	     print(pi)
+   --print("Press 'Enter' to enter safemode.")
    local id, p1 = os.pullEvent()
-   if id == "key" and p1 == 28 then
+   if id == "key" and p1 == 28 and pi == 0 then
    term.clear()
-   os.loadAPI("api/BFS")
+   os.loadAPI("/api/BFS")
    term.setCursorPos(1,1)
-   print("[SafeMode]")
+   print("[Booting]")
    BFS.DiskS(false)
    shell.run("/system/boot.lua")
-   elseif id == "key" and p1 == 41 then
+   elseif id == "key" and p1 == 15 and pi == 1 then
+   fs.delete( "/system/usr.src" )
+   fs.delete( "/system/store/udid" )
+   os.reboot()
+   elseif id == "key" and p1 == 41 and pi == 1 then
+   shell.run("/system/desk.lua")
+   elseif id == "key" and p1 == 45 and pi == 1 then
+   local event, key, isHeld = os.pullEvent("key")
+   if key == 44 then
+   
+   end
+   elseif id == "key" and p1 == 41 and pi == 0 then
    reset()
+   elseif id == "key" and p1 == 17 then
+   local event, key, isHeld = os.pullEvent("key")
+   if key == 71 then
+   os.loadAPI("/api/BFS")
+   print(isHeld)
+   pi = 1
+   print("deb"..pi)
+   print(x,y)
+   sleep(1)
+   BFS.drawimg("startup","f")
+   sleep(1)
+   else
+   os.reboot()
+   end
    elseif id == "timer" and p1 == timer then
    OwO = OwO-1
    timer = os.startTimer(1)
    end
   until OwO < 0
 end
-
-safemode(0)
+safemode(.1)
 term.clear()
 loadapi()
 term.clear()
