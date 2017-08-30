@@ -24,6 +24,7 @@ tBarC = 256
 tBartC = 32768
 tmenu = 128
 tmenut = 256
+tRGBback = 2048
 end
 if backgroundno == 1 then
 term.setBackgroundColor( colors.red )
@@ -32,6 +33,7 @@ tBarC = 256
 tBartC = 32768
 tmenu = 128
 tmenut = 256
+tRGBback = 16384
 end
 if backgroundno == 2 then
 BFS.loadimages(lnes, classicbg)
@@ -44,8 +46,9 @@ if backgroundno == 3 then
 BFS.loadimages(lnes, bootlogo)
 tBarC = 8
 tBartC = 1
-tmenu = 8
+tmenu = 512
 tmenut = 1
+tRGBback = 2048
 end
 if backgroundno == 4 then
 BFS.loadimages(lnes, errorlogo)
@@ -53,6 +56,7 @@ tBarC = 2
 tBartC = 1
 tmenu = 2
 tmenut = 1
+tRGBback = 16384
 end
 if backgroundno == 99 then
 BFS.breakbg(classicbg, 19, 19)
